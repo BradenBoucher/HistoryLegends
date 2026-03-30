@@ -36,132 +36,251 @@ const UNITS = [
   { id:"medic", name:"Medic", icon:"⚕️", desc:"Heals 8 HP on correct.", hpMult:1.15, dmgMult:0.75, special:"heal", healAmt:8, cost:125, color:"#66BB6A" },
 ];
 
-// ─── QUESTIONS (kept compact) ────────────────────────────────────────────────
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// REVOLUTIONARY WAR QUESTION BANKS — APUSH Period 3 (1754–1800)
+// Mix of Layer 1 (factual), Layer 2 (causation/significance), Layer 3 (sourcing)
+// ═══════════════════════════════════════════════════════════════════════════════
+
 const Q_LEXINGTON = [
-  {text:"In what year did Lexington and Concord take place?",options:["1774","1775","1776","1773"],answer:1,explanation:"April 19, 1775."},
-  {text:"Who commanded the British march to Concord?",options:["Howe","Cornwallis","Lt. Col. Smith","Burgoyne"],answer:2,explanation:"Lt. Col. Smith led the expedition."},
-  {text:"Primary objective of the British march?",options:["Arrest Adams","Seize weapons","Build fort","Collect taxes"],answer:1,explanation:"Confiscate colonial military supplies."},
-  {text:"Who made the famous midnight ride?",options:["Franklin","Adams","Paul Revere","Jefferson"],answer:2,explanation:"Revere rode from Boston April 18."},
-  {text:"Militia ready at a minute's notice?",options:["Continental Army","Sons of Liberty","Minutemen","Rangers"],answer:2,explanation:"Minutemen pledged instant readiness."},
-  {text:"First shot at Lexington is called?",options:["Shot of Freedom","Opening Salvo","Shot Heard Round the World","First Volley"],answer:2,explanation:"Coined by Emerson in 1837."},
-  {text:"Who led militia at Lexington Green?",options:["John Parker","Washington","Ethan Allen","Arnold"],answer:0,explanation:"Capt. Parker commanded ~77 men."},
-  {text:"How many militia on Lexington Green?",options:["~200","~77","~500","~30"],answer:1,explanation:"77 Minutemen, vastly outnumbered."},
-  {text:"Signal warning of British route?",options:["Cannons","Flags","Lanterns in Old North Church","Drums"],answer:2,explanation:"Two lanterns meant 'by sea.'"},
-  {text:"What 1774 act fueled colonial anger?",options:["Stamp Act","Intolerable Acts","Townshend Acts","Quartering Act"],answer:1,explanation:"Punished MA for the Tea Party."},
-];
-const Q_TICONDEROGA = [
-  {text:"Who captured Fort Ticonderoga?",options:["Washington","Ethan Allen","Adams","Greene"],answer:1,explanation:"Ethan Allen led the surprise attack."},
-  {text:"What militia did Allen lead?",options:["Minutemen","Continental Army","Green Mountain Boys","Sons of Liberty"],answer:2,explanation:"Vermont militia."},
-  {text:"Key value of capturing Ticonderoga?",options:["Prison","Artillery/cannons","Naval base","Gold"],answer:1,explanation:"Valuable cannons captured."},
-  {text:"Who transported cannons to Boston?",options:["Revere","Henry Knox","Arnold","Allen"],answer:1,explanation:"Knox moved 60 tons in winter."},
-  {text:"What colony was Ticonderoga in?",options:["Massachusetts","Connecticut","New York","Vermont"],answer:2,explanation:"Upstate New York."},
-  {text:"Body of water near Ticonderoga?",options:["Hudson","Lake Champlain","Lake Ontario","Atlantic"],answer:1,explanation:"Southern Lake Champlain."},
-  {text:"British defenders at the fort?",options:["200","500","48","1,000"],answer:2,explanation:"Only about 48 soldiers."},
-  {text:"Who fought alongside Allen?",options:["Washington","Benedict Arnold","Hancock","Jefferson"],answer:1,explanation:"Arnold had a MA commission."},
-];
-const Q_BUNKER = [
-  {text:"Where did 'Bunker Hill' fighting occur?",options:["Bunker Hill","Breed's Hill","Dorchester","Castle Island"],answer:1,explanation:"Fighting on Breed's Hill."},
-  {text:"Famous order about when to fire?",options:["Fire at will","Shoot to kill","Don't fire til whites of their eyes","Hold the line"],answer:2,explanation:"Attributed to Prescott."},
-  {text:"Colonial commander at Bunker Hill?",options:["Washington","Col. Prescott","Allen","Putnam"],answer:1,explanation:"Prescott commanded the redoubt."},
-  {text:"How many British assaults?",options:["1","2","3","4"],answer:2,explanation:"Three; third succeeded."},
-  {text:"Battle outcome?",options:["Colonial victory","British victory w/ heavy losses","Stalemate","Surrender"],answer:1,explanation:"British pyrrhic victory."},
-  {text:"British casualties?",options:["200","500","1,000","2,000"],answer:2,explanation:"~1,000 killed or wounded."},
-  {text:"American general killed?",options:["Washington","Joseph Warren","Knox","Greene"],answer:1,explanation:"Dr. Warren was killed."},
-  {text:"British commander?",options:["Gage","Gen. Howe","Cornwallis","Burgoyne"],answer:1,explanation:"Howe led the assault."},
-];
-const Q_BOSTON = [
-  {text:"How long was the Siege of Boston?",options:["3 months","6 months","11 months","2 years"],answer:2,explanation:"About 11 months."},
-  {text:"What did Washington occupy to force British out?",options:["Bunker Hill","Dorchester Heights","Castle William","Fort Independence"],answer:1,explanation:"Dorchester Heights overlooked the city."},
-  {text:"Where did Heights cannons come from?",options:["France","Ticonderoga","Philadelphia","Local"],answer:1,explanation:"Knox's expedition from Ticonderoga."},
-  {text:"Who commanded during the siege?",options:["Allen","Howe","Washington","Adams"],answer:2,explanation:"Washington took command July 1775."},
-  {text:"When did British evacuate?",options:["Jan 1776","March 17, 1776","July 4, 1776","Dec 1776"],answer:1,explanation:"Evacuation Day."},
-  {text:"British sailed where after?",options:["New York","London","Halifax","Charleston"],answer:2,explanation:"Withdrew to Halifax."},
-  {text:"What book inspired colonists?",options:["Federalist Papers","Common Sense","Poor Richard's","Rights of Man"],answer:1,explanation:"Paine's Common Sense."},
-];
-const Q_LONGISLAND = [
-  {text:"When was Long Island fought?",options:["June 1776","Aug 27, 1776","Oct 1776","Dec 1776"],answer:1,explanation:"August 27, 1776."},
-  {text:"Modern borough of most fighting?",options:["Manhattan","Queens","Brooklyn","Staten Island"],answer:2,explanation:"Across what is now Brooklyn."},
-  {text:"How did Washington's army escape?",options:["Fought through","Nighttime evacuation","Surrendered","Tunnels"],answer:1,explanation:"Nighttime boat evacuation."},
-  {text:"British flanking route?",options:["Hudson","Jamaica Pass","Central Park","Harlem"],answer:1,explanation:"Unguarded Jamaica Pass."},
-  {text:"Foreign soldiers for British?",options:["French","Spanish","Hessians","Dutch"],answer:2,explanation:"German mercenaries."},
-  {text:"Battle's significance?",options:["Fewest casualties","Largest of the war","First naval","Longest"],answer:1,explanation:"Largest battle of the Revolution."},
-  {text:"British troop count?",options:["10,000","20,000","32,000","50,000"],answer:2,explanation:"~32,000 troops."},
-];
-const Q_TRENTON = [
-  {text:"When was Trenton?",options:["Dec 25, 1776","Jan 3, 1777","Nov 1776","Feb 1777"],answer:0,explanation:"Christmas night crossing."},
-  {text:"What river did Washington cross?",options:["Hudson","Potomac","Delaware","Charles"],answer:2,explanation:"The Delaware River."},
-  {text:"Enemy forces at Trenton?",options:["British regulars","French","Hessians","Loyalists"],answer:2,explanation:"Hessian mercenaries."},
-  {text:"Hessian commander?",options:["Howe","Col. Rall","Cornwallis","Tarleton"],answer:1,explanation:"Colonel Johann Rall."},
-  {text:"Weather aiding the attack?",options:["Fog","Blizzard/sleet","Hurricane","Heat"],answer:1,explanation:"Fierce sleet and snow."},
-  {text:"Hessians captured?",options:["~100","~500","~900","~2,000"],answer:2,explanation:"About 900 captured."},
-  {text:"Why was Trenton important?",options:["First victory in months","Ended war","Captured general","French alliance"],answer:0,explanation:"Desperately needed morale boost."},
-];
-const Q_PRINCETON = [
-  {text:"How soon after Trenton was Princeton?",options:["Next day","About a week","A month","Six months"],answer:1,explanation:"January 3, 1777."},
-  {text:"Who did Washington outmaneuver?",options:["Howe","Cornwallis","Burgoyne","Rall"],answer:1,explanation:"Slipped past Cornwallis at night."},
-  {text:"Tactic to evade Cornwallis?",options:["Frontal assault","Left campfires burning","Naval escape","Decoy army"],answer:1,explanation:"Kept fires burning as a trick."},
-  {text:"Battle result?",options:["British victory","American victory","Stalemate","Both retreated"],answer:1,explanation:"Another morale-boosting victory."},
-  {text:"What did Washington establish after?",options:["New capital","Winter quarters at Morristown","Naval fleet","Treaty"],answer:1,explanation:"Morristown winter quarters."},
-  {text:"Washington's nickname from these victories?",options:["The Fox","The Old Fox","American Hannibal","Liberator"],answer:1,explanation:"His cunning earned him 'The Old Fox.'"},
-];
-const Q_BRANDYWINE = [
-  {text:"Brandywine was fought along what creek?",options:["Brandywine Creek","Schuylkill","Delaware","Chesapeake"],answer:0,explanation:"Brandywine Creek, Pennsylvania."},
-  {text:"What city was Washington protecting?",options:["New York","Boston","Philadelphia","Charleston"],answer:2,explanation:"Philadelphia, the capital."},
-  {text:"British flanking tactic?",options:["Amphibious","Divided army, two-sided attack","Night assault","Cavalry"],answer:1,explanation:"Howe sent Cornwallis flanking."},
-  {text:"French volunteer wounded here?",options:["Rochambeau","Lafayette","De Grasse","Von Steuben"],answer:1,explanation:"Lafayette's first battle."},
-  {text:"What happened to Philadelphia?",options:["Defended","British captured it","Burned","Abandoned"],answer:1,explanation:"British occupied Philadelphia."},
-  {text:"When was Brandywine?",options:["July 1777","Sept 11, 1777","Oct 1777","Dec 1777"],answer:1,explanation:"September 11, 1777."},
-];
-const Q_GERMANTOWN = [
-  {text:"Washington's plan at Germantown?",options:["Defend fort","Surprise dawn attack","Negotiate","Retreat"],answer:1,explanation:"Bold surprise attack on British camp."},
-  {text:"What caused confusion?",options:["Rain","Dense fog","Snow","Heat"],answer:1,explanation:"Thick fog, friendly fire incidents."},
-  {text:"British stronghold building?",options:["Independence Hall","Chew House","Valley Forge HQ","Betsy Ross"],answer:1,explanation:"Troops barricaded in the Chew House."},
-  {text:"How did battle influence allies?",options:["Discouraged","Impressed France","No impact","Angered Spain"],answer:1,explanation:"French impressed by American aggression."},
-  {text:"What happened to American units in fog?",options:["Surrendered","Fired on each other","Got lost at sea","Defected"],answer:1,explanation:"Friendly fire in confusion."},
-  {text:"When was Germantown?",options:["Aug 1777","Oct 4, 1777","Dec 1777","Jan 1778"],answer:1,explanation:"October 4, 1777."},
-];
-const Q_SARATOGA = [
-  {text:"Saratoga is considered the war's what?",options:["Bloodiest","Turning point","Final battle","First battle"],answer:1,explanation:"Secured the French Alliance."},
-  {text:"British commander at Saratoga?",options:["Howe","Clinton","Burgoyne","Cornwallis"],answer:2,explanation:"'Gentleman Johnny' Burgoyne."},
-  {text:"What country allied after Saratoga?",options:["Spain","Netherlands","France","Prussia"],answer:2,explanation:"France formally allied in 1778."},
-  {text:"Heroic general who later became traitor?",options:["Greene","Knox","Benedict Arnold","Lee"],answer:2,explanation:"Arnold fought bravely then defected."},
-  {text:"What happened to Burgoyne's army?",options:["Escaped","Surrendered entirely","Won","Retreated"],answer:1,explanation:"~6,000 surrendered."},
-  {text:"American commander?",options:["Washington","Gen. Horatio Gates","Greene","Lafayette"],answer:1,explanation:"Gates commanded American forces."},
-  {text:"How many battles at Saratoga?",options:["One","Two","Three","Four"],answer:1,explanation:"Freeman's Farm and Bemis Heights."},
-  {text:"Burgoyne's strategy?",options:["Southern Strategy","Divide and Conquer","Anaconda","Hudson River Strategy"],answer:1,explanation:"Control the Hudson to split New England."},
-];
-const Q_VALLEYFORGE = [
-  {text:"Valley Forge was what type of event?",options:["Battle","Winter encampment","Naval engagement","Negotiation"],answer:1,explanation:"A six-month winter camp."},
-  {text:"Biggest threat at Valley Forge?",options:["British attacks","Disease/starvation","Flooding","Desertion"],answer:1,explanation:"~2,000 died from disease and exposure."},
-  {text:"Who trained the army at Valley Forge?",options:["Lafayette","Greene","Baron von Steuben","Knox"],answer:2,explanation:"Prussian Baron von Steuben."},
-  {text:"Von Steuben was from?",options:["France","Spain","Prussia","Netherlands"],answer:2,explanation:"Prussian military officer."},
-  {text:"Soldiers who died at Valley Forge?",options:["200","500","2,000","5,000"],answer:2,explanation:"About 2,000 died."},
-  {text:"Skill gained at Valley Forge?",options:["Naval warfare","Professional discipline","Guerrilla tactics","Cannon making"],answer:1,explanation:"European drill and discipline."},
-  {text:"When did army leave Valley Forge?",options:["March 1778","June 1778","Sept 1778","Dec 1778"],answer:1,explanation:"June 1778, transformed."},
+  {text:"In what year did the Battles of Lexington and Concord take place?",options:["1774","1775","1776","1773"],answer:1,explanation:"Fought on April 19, 1775 — the first military engagements of the Revolution."},
+  {text:"What was the primary British objective of the march to Concord?",options:["Arrest colonial governors","Seize colonial weapons and supplies","Establish a new fort","Collect overdue taxes"],answer:1,explanation:"British aimed to confiscate military supplies stockpiled by colonists."},
+  {text:"Why did colonial leaders view the British march as especially threatening?",options:["It targeted civilian homes","It aimed to disarm them, removing their ability to resist","It was led by the King personally","It violated a formal ceasefire"],answer:1,explanation:"Disarmament would eliminate the colonists' capacity for organized resistance."},
+  {text:"Who is credited with the famous midnight ride warning of British approach?",options:["Benjamin Franklin","John Adams","Paul Revere","Thomas Jefferson"],answer:2,explanation:"Revere rode from Boston to Lexington on April 18, 1775."},
+  {text:"What were Minutemen?",options:["Continental Army regulars","Militia pledged to be ready at a minute's notice","British spies","Volunteer firefighters"],answer:1,explanation:"Minutemen were specially trained militia who could mobilize rapidly."},
+  {text:"The first shot at Lexington is often called what?",options:["Shot of Freedom","Opening Salvo","Shot Heard Round the World","First Volley"],answer:2,explanation:"Phrase coined by Ralph Waldo Emerson — it symbolized the global significance of the revolt."},
+  {text:"How did the fighting at Lexington and Concord change colonial views on reconciliation?",options:["Made peace more likely","Had no political effect","Made armed resistance seem necessary","Led to immediate independence"],answer:2,explanation:"Bloodshed made reconciliation with Britain seem increasingly impossible."},
+  {text:"What signal warned colonists of the British route?",options:["Cannon shots","Flag signals","Lanterns in Old North Church","Drum patterns"],answer:2,explanation:"Two lanterns meant 'by sea' — the British crossed by boat to Cambridge."},
+  {text:"Where did militia inflict heavy casualties on retreating British?",options:["Boston Harbor","Bunker Hill","Along the road back to Boston","Philadelphia"],answer:2,explanation:"Colonists fired from behind trees and stone walls during the long retreat."},
+  {text:"Why do historians treat Lexington and Concord as a 'point of no return'?",options:["The Declaration was signed there","British forces surrendered","Violence made political compromise extremely difficult","France immediately allied with colonists"],answer:2,explanation:"Once blood was shed on both sides, the path to war became nearly inevitable."},
+  {text:"What 1774 British acts directly fueled colonial anger before the battle?",options:["Stamp Act","Intolerable Acts","Townshend Acts","Navigation Acts"],answer:1,explanation:"The Intolerable Acts punished Massachusetts for the Boston Tea Party, escalating tensions."},
+  {text:"About how many British soldiers marched toward Concord?",options:["250","700","1,500","3,000"],answer:1,explanation:"About 700 British regulars, outnumbering the initial militia at Lexington."},
 ];
 
-// ─── BATTLE CONFIGS WITH 3 ENEMY DIVISIONS EACH ─────────────────────────────
+const Q_TICONDEROGA = [
+  {text:"Who led the colonial capture of Fort Ticonderoga?",options:["George Washington","Ethan Allen","John Adams","Nathanael Greene"],answer:1,explanation:"Ethan Allen led the surprise dawn attack in May 1775."},
+  {text:"What militia group did Ethan Allen lead?",options:["Minutemen","Continental Army","Green Mountain Boys","Sons of Liberty"],answer:2,explanation:"The Green Mountain Boys were a Vermont militia."},
+  {text:"What was the key strategic value of capturing Ticonderoga?",options:["It held political prisoners","It contained artillery and cannons","It was a major naval base","It had gold reserves"],answer:1,explanation:"The fort's cannons would later prove decisive at Boston."},
+  {text:"Who transported the captured cannons to Boston?",options:["Paul Revere","Henry Knox","Benedict Arnold","Ethan Allen"],answer:1,explanation:"Henry Knox moved 60 tons of artillery overland in winter — a remarkable feat."},
+  {text:"On what body of water did Ticonderoga sit?",options:["Hudson River","Lake Champlain","Lake Ontario","Atlantic Ocean"],answer:1,explanation:"It controlled the southern end of Lake Champlain — a key invasion route."},
+  {text:"Why was the capture so easy despite the fort's strong defenses?",options:["French helped attack","Only about 48 British soldiers garrisoned it","Cannons malfunctioned","A traitor opened the gates"],answer:1,explanation:"The tiny garrison was completely surprised by the dawn raid."},
+  {text:"Who also arrived with a Massachusetts commission to lead the attack?",options:["George Washington","Benedict Arnold","John Hancock","Thomas Jefferson"],answer:1,explanation:"Arnold arrived claiming authority — creating a leadership dispute with Allen."},
+  {text:"How did the captured cannons later change the war?",options:["They sank British ships","They were placed on Dorchester Heights, forcing British from Boston","They were sold to France","They were never used"],answer:1,explanation:"Knox's cannons on Dorchester Heights made the British position in Boston untenable."},
+];
+
+const Q_BUNKER = [
+  {text:"Where did the actual fighting at 'Bunker Hill' mostly take place?",options:["Bunker Hill","Breed's Hill","Dorchester Heights","Castle Island"],answer:1,explanation:"Fighting occurred on Breed's Hill, closer to Boston Harbor."},
+  {text:"What famous order was given about when to fire?",options:["Fire at will","Shoot to kill","Don't fire until you see the whites of their eyes","Hold the line"],answer:2,explanation:"Attributed to Col. Prescott — it preserved scarce ammunition."},
+  {text:"How many times did the British assault the hill?",options:["1","2","3","4"],answer:2,explanation:"Three assaults — the first two were repulsed with heavy British casualties."},
+  {text:"Why might Bunker Hill be called a 'defeat that felt like a victory' for colonists?",options:["They captured British officers","The massive British casualties proved colonists could fight regulars","They held the hill permanently","Britain offered peace terms after"],answer:1,explanation:"Despite losing the position, inflicting ~1,000 British casualties proved colonial fighting capability."},
+  {text:"What did the high British casualty count suggest about their assumptions?",options:["Their intelligence was correct","They underestimated colonial fighting ability","Their navy was too weak","They had superior numbers"],answer:1,explanation:"Britain assumed untrained militia would scatter — Bunker Hill shattered that assumption."},
+  {text:"What American leader was killed during the British final assault?",options:["George Washington","Dr. Joseph Warren","Henry Knox","Nathanael Greene"],answer:1,explanation:"Warren was a prominent political and military figure — his death was a significant loss."},
+  {text:"Who commanded the British assault forces?",options:["Gen. Gage","Gen. William Howe","Gen. Cornwallis","Gen. Burgoyne"],answer:1,explanation:"Gen. Howe led the attacks and was reportedly shaken by the casualties."},
+  {text:"How did Bunker Hill affect the likelihood of peaceful resolution?",options:["Increased it","Decreased it significantly","Had no effect","Led to immediate negotiations"],answer:1,explanation:"Heavy casualties on both sides made compromise increasingly unlikely."},
+  {text:"What did colonials build overnight on Breed's Hill?",options:["A stone fort","A redoubt (earthwork fortification)","A wooden stockade","A trench network"],answer:1,explanation:"They constructed earthworks in a single night — surprising the British at dawn."},
+];
+
+const Q_BOSTON = [
+  {text:"Approximately how long did the Siege of Boston last?",options:["3 months","6 months","11 months","2 years"],answer:2,explanation:"From April 1775 to March 1776 — about 11 months."},
+  {text:"What strategic position did Washington fortify to force the British out?",options:["Bunker Hill","Dorchester Heights","Castle William","Fort Independence"],answer:1,explanation:"Dorchester Heights overlooked Boston — cannons there could devastate the city and harbor."},
+  {text:"Where did the Dorchester Heights cannons come from?",options:["France","Fort Ticonderoga","Philadelphia","Local foundries"],answer:1,explanation:"Henry Knox's winter expedition dragged them from captured Ticonderoga."},
+  {text:"Who took command of the Continental Army during the siege?",options:["Ethan Allen","Gen. Howe","George Washington","John Adams"],answer:2,explanation:"Washington arrived in July 1775 to organize the army besieging Boston."},
+  {text:"When did the British evacuate Boston?",options:["January 1776","March 17, 1776","July 4, 1776","December 1776"],answer:1,explanation:"March 17 — still celebrated as Evacuation Day in Boston."},
+  {text:"Where did the British fleet withdraw to?",options:["New York","London","Halifax, Nova Scotia","Charleston"],answer:2,explanation:"The fleet sailed to Halifax to regroup."},
+  {text:"What influential pamphlet galvanized colonists during the siege?",options:["The Federalist Papers","Common Sense by Thomas Paine","Poor Richard's Almanack","The Rights of Man"],answer:1,explanation:"Published January 1776, it argued powerfully for complete independence."},
+  {text:"Why was the siege significant beyond just liberating Boston?",options:["It proved Washington could organize an effective army","It ended the war","It secured French alliance","It captured the British king"],answer:0,explanation:"Washington transformed a disorganized militia into a functional fighting force during the siege."},
+];
+
+const Q_LONGISLAND = [
+  {text:"When was the Battle of Long Island fought?",options:["June 1776","August 27, 1776","October 1776","December 1776"],answer:1,explanation:"August 27, 1776 — weeks after the Declaration of Independence."},
+  {text:"What made this the largest battle of the entire Revolution?",options:["Most cannons used","Most troops engaged (~40,000 total)","Longest duration","Most territory changed hands"],answer:1,explanation:"About 32,000 British/Hessian and 10,000+ Americans — the war's largest engagement."},
+  {text:"How did Washington save his army after the defeat?",options:["Fought through British lines","Masterful nighttime boat evacuation","Negotiated a ceasefire","Surrendered and was paroled"],answer:1,explanation:"Under cover of fog and darkness, the army crossed the East River — saving the Revolution."},
+  {text:"What geographic feature did the British use to flank the Americans?",options:["Hudson River","Jamaica Pass","Central Park","Harlem Heights"],answer:1,explanation:"The unguarded Jamaica Pass allowed a devastating flanking maneuver."},
+  {text:"What foreign soldiers fought alongside the British?",options:["French mercenaries","Spanish soldiers","Hessian (German) mercenaries","Dutch volunteers"],answer:2,explanation:"Hessians were German professional soldiers hired by Britain."},
+  {text:"Why was defending New York both militarily and symbolically important?",options:["It was the capital","Its port controlled trade and communication","It had the most population","Washington lived there"],answer:1,explanation:"New York's harbor made it the most strategically valuable port in the colonies."},
+  {text:"How can a commander 'lose a battle but preserve the war effort'?",options:["By surrendering honorably","By keeping the army intact to fight another day","By destroying supplies","By switching sides"],answer:1,explanation:"Washington's evacuation saved the Continental Army — losing it would have ended the Revolution."},
+  {text:"Who commanded the British forces at Long Island?",options:["Gen. Cornwallis","Gen. Burgoyne","Gen. William Howe","Gen. Clinton"],answer:2,explanation:"Gen. Howe commanded the combined British and Hessian forces."},
+];
+
+const Q_TRENTON = [
+  {text:"When did Washington cross the Delaware for the Battle of Trenton?",options:["December 25, 1776","January 3, 1777","November 1776","February 1777"],answer:0,explanation:"Christmas night, 1776 — a desperate gamble during the war's darkest period."},
+  {text:"What river did Washington famously cross?",options:["Hudson River","Potomac River","Delaware River","Charles River"],answer:2,explanation:"The iconic crossing of the icy Delaware River."},
+  {text:"Who were the enemy forces at Trenton?",options:["British regulars","French troops","Hessian mercenaries","Loyalist militia"],answer:2,explanation:"Hessian soldiers garrisoned at Trenton."},
+  {text:"Why did morale matter as much as territory in late 1776?",options:["The army was well-supplied","Enlistments were expiring and men were losing hope","France had already allied","The war was almost over"],answer:1,explanation:"Without a victory, the army might simply dissolve as enlistments expired."},
+  {text:"What weather conditions aided the surprise attack?",options:["Dense fog","A blizzard/sleet storm","Hurricane","Extreme heat"],answer:1,explanation:"Fierce sleet and snow provided cover and kept the Hessians indoors."},
+  {text:"How many Hessians were captured at Trenton?",options:["About 100","About 500","About 900","About 2,000"],answer:2,explanation:"About 900 captured — a stunning reversal after months of defeat."},
+  {text:"How did Trenton demonstrate a shift in American strategy?",options:["Hold cities at all costs","Survive and strike opportunistically","Rely only on militia","Avoid all combat"],answer:1,explanation:"Washington shifted to hitting vulnerable targets rather than defending fixed positions."},
+  {text:"Why was Trenton significant for the Revolution's survival?",options:["It ended the war","It was the first victory in months, restoring hope","It captured a British general","It secured French alliance"],answer:1,explanation:"A desperately needed victory that kept the cause alive through the winter."},
+];
+
+const Q_PRINCETON = [
+  {text:"How soon after Trenton was the Battle of Princeton?",options:["The next day","About 10 days","About a month","Six months"],answer:1,explanation:"January 3, 1777 — continuing the momentum of the 'Ten Crucial Days.'"},
+  {text:"What tactic did Washington use to evade Cornwallis?",options:["Frontal assault","Left campfires burning and marched away at night","Naval escape","Sent a decoy force"],answer:1,explanation:"Kept fires burning to trick Cornwallis while the army slipped away in darkness."},
+  {text:"What did the Trenton-Princeton sequence earn Washington?",options:["The nickname 'The Old Fox'","A promotion to King","A peace treaty","British surrender"],answer:0,explanation:"His cunning maneuvers earned him respect as a crafty strategist."},
+  {text:"What did Washington establish after Princeton?",options:["A new capital","Winter quarters at Morristown","A naval fleet","A peace conference"],answer:1,explanation:"The army went into winter quarters at Morristown, New Jersey."},
+  {text:"Why are Trenton and Princeton often taught together?",options:["Same commander led both sides","They form one continuous strategic episode","They happened in the same hour","They were in the same town"],answer:1,explanation:"Together they constitute the 'Ten Crucial Days' that saved the Revolution."},
+  {text:"What does the Trenton-Princeton sequence suggest about Patriot strategy evolution?",options:["They abandoned guerrilla tactics","They shifted from defending cities to mobile, opportunistic strikes","They relied entirely on France","They stopped fighting in winter"],answer:1,explanation:"The shift to maneuver warfare showed strategic maturation from 1775's defensive posture."},
+];
+
+const Q_BRANDYWINE = [
+  {text:"What city was Washington trying to protect at Brandywine?",options:["New York","Boston","Philadelphia","Charleston"],answer:2,explanation:"Philadelphia — the colonial capital and seat of the Continental Congress."},
+  {text:"What flanking tactic did the British use?",options:["Amphibious landing","Divided army to attack from two sides","Night assault","Cavalry charge"],answer:1,explanation:"Howe sent Cornwallis on a wide flanking march while pinning Washington frontally."},
+  {text:"Which French volunteer was wounded in his first battle here?",options:["Rochambeau","Marquis de Lafayette","De Grasse","Von Steuben"],answer:1,explanation:"Lafayette was wounded at Brandywine — his dedication impressed Americans."},
+  {text:"What happened to Philadelphia after Brandywine?",options:["Successfully defended","British captured and occupied it","It was burned","Congress held firm"],answer:1,explanation:"The British occupied Philadelphia — Congress fled to York, Pennsylvania."},
+  {text:"When was the Battle of Brandywine?",options:["July 1777","September 11, 1777","October 1777","December 1777"],answer:1,explanation:"September 11, 1777."},
+  {text:"Why did losing Philadelphia NOT end the Revolution?",options:["It wasn't the real capital","The war was about the army, not any single city","France intervened immediately","Britain gave it back"],answer:1,explanation:"As long as Washington's army survived, the Revolution continued — capitals could be retaken."},
+];
+
+const Q_GERMANTOWN = [
+  {text:"What was Washington's plan at Germantown?",options:["Defend a fort","Launch a surprise dawn attack on the British camp","Negotiate peace","Retreat to Valley Forge"],answer:1,explanation:"A bold four-column surprise attack on British positions near Philadelphia."},
+  {text:"What weather condition caused confusion and friendly fire?",options:["Rain","Dense fog","Snow","Extreme heat"],answer:1,explanation:"Thick fog caused American units to fire on each other."},
+  {text:"What stone house became a British stronghold during the battle?",options:["Independence Hall","The Chew House (Cliveden)","Valley Forge HQ","Betsy Ross House"],answer:1,explanation:"British troops barricaded in the Chew House, disrupting the American advance."},
+  {text:"Though a defeat, how did Germantown influence the war?",options:["Discouraged all allies","Impressed France, helping secure the alliance","Ended fighting for the year","Had no broader impact"],answer:1,explanation:"French observers were impressed that Americans could mount bold offensive operations."},
+  {text:"What happened to some American units in the fog?",options:["They surrendered","They fired on each other","They got lost at sea","They defected"],answer:1,explanation:"Friendly fire incidents in the confusion disrupted coordination."},
+  {text:"Why is Germantown significant despite being a tactical loss?",options:["Washington was captured","It demonstrated offensive capability that helped convince France to ally","All British generals were killed","It liberated Philadelphia"],answer:1,explanation:"The willingness to attack, even unsuccessfully, showed France the Americans were serious."},
+];
+
+const Q_SARATOGA = [
+  {text:"Why do historians call Saratoga the war's 'turning point'?",options:["Most casualties","It convinced France to formally ally with America","It was the last battle","Washington commanded personally"],answer:1,explanation:"French alliance brought money, troops, and naval power — transforming the war."},
+  {text:"Who commanded the British forces at Saratoga?",options:["Gen. Howe","Gen. Clinton","Gen. Burgoyne","Lord Cornwallis"],answer:2,explanation:"'Gentleman Johnny' Burgoyne led the failed invasion from Canada."},
+  {text:"What was Burgoyne's strategic goal?",options:["Capture Philadelphia","Split New England from the other colonies via the Hudson River","Invade France","Defend New York City"],answer:1,explanation:"Controlling the Hudson would isolate rebellious New England."},
+  {text:"What happened to Burgoyne's entire army?",options:["Escaped to Canada","Surrendered (~6,000 troops)","Won and held position","Retreated to New York"],answer:1,explanation:"The entire army surrendered — a catastrophic British defeat."},
+  {text:"Which American general fought heroically at Saratoga but later became a traitor?",options:["Nathanael Greene","Henry Knox","Benedict Arnold","Charles Lee"],answer:2,explanation:"Arnold's battlefield bravery at Saratoga contrasts sharply with his later defection."},
+  {text:"Who was the American commander at Saratoga?",options:["Washington","Gen. Horatio Gates","Gen. Greene","Lafayette"],answer:1,explanation:"Gen. Horatio Gates commanded, though Arnold's aggressive tactics were crucial."},
+  {text:"How many distinct battles made up Saratoga?",options:["One","Two","Three","Four"],answer:1,explanation:"Freeman's Farm (Sept 19) and Bemis Heights (Oct 7)."},
+  {text:"How did Saratoga 'internationalize' the war?",options:["It was fought on French soil","France formally allied, and Spain/Netherlands later joined against Britain","Russia invaded Britain","All European nations declared neutrality"],answer:1,explanation:"French alliance in 1778 transformed a colonial rebellion into a global conflict."},
+  {text:"Why did European powers care about an American rebellion?",options:["They wanted American land","Weakening Britain served their own geopolitical interests","They shared democratic values","They were required by treaty"],answer:1,explanation:"France especially saw an opportunity to weaken its longtime rival Britain."},
+];
+
+const Q_VALLEYFORGE = [
+  {text:"Valley Forge was what type of event?",options:["A major battle","A six-month winter encampment","A naval engagement","A peace negotiation"],answer:1,explanation:"Not a battle — a grueling winter camp where the army was transformed."},
+  {text:"What was the biggest threat to soldiers at Valley Forge?",options:["British attacks","Disease, cold, and starvation","Flooding","Desertion to the enemy"],answer:1,explanation:"About 2,000 of 12,000 men died from disease and exposure."},
+  {text:"Who trained the Continental Army at Valley Forge?",options:["Lafayette","Gen. Greene","Baron von Steuben","Gen. Knox"],answer:2,explanation:"Prussian drillmaster von Steuben taught European military discipline and tactics."},
+  {text:"What country was von Steuben from?",options:["France","Spain","Prussia (Germany)","Netherlands"],answer:2,explanation:"He was a Prussian military officer who volunteered his expertise."},
+  {text:"What transformation occurred at Valley Forge?",options:["The army became a navy","Untrained militia became a professional fighting force","All soldiers were replaced","The army surrendered"],answer:1,explanation:"Von Steuben's drilling transformed the army's discipline and effectiveness."},
+  {text:"Why is Valley Forge significant even though no battle was fought?",options:["It's where independence was declared","The army that emerged was fundamentally more capable","It was the war's last event","All generals were replaced"],answer:1,explanation:"The army that left Valley Forge in June 1778 was a transformed fighting force."},
+  {text:"When did the army leave Valley Forge?",options:["March 1778","June 1778","September 1778","December 1778"],answer:1,explanation:"June 1778 — emerging as a professional army ready for Monmouth."},
+];
+
+const Q_COWPENS = [
+  {text:"When was the Battle of Cowpens?",options:["October 1780","January 17, 1781","March 1781","June 1781"],answer:1,explanation:"January 17, 1781 — a critical Southern Campaign victory."},
+  {text:"Who commanded American forces at Cowpens?",options:["Washington","Gen. Greene","Gen. Daniel Morgan","Lafayette"],answer:2,explanation:"Brigadier General Daniel Morgan designed a brilliant tactical plan."},
+  {text:"What British officer led the forces defeated at Cowpens?",options:["Cornwallis","Col. Banastre Tarleton","Gen. Howe","Gen. Clinton"],answer:1,explanation:"Tarleton was known for aggressive cavalry tactics."},
+  {text:"What was Morgan's innovative tactic?",options:["Frontal assault","Used militia as a deliberate 'retreat' to lure British into a trap","Naval bombardment","Night attack"],answer:1,explanation:"He positioned militia to fire and fall back, drawing the British into prepared lines."},
+  {text:"Why was Cowpens significant for the Southern Campaign?",options:["It ended the war","It destroyed a significant portion of Cornwallis's mobile force","It captured Charleston","France landed troops there"],answer:1,explanation:"Tarleton's defeat weakened Cornwallis and set up the Yorktown campaign."},
+  {text:"How did Cowpens show American tactical maturation?",options:["They copied British tactics exactly","A commander designed strategy around his troops' actual strengths and weaknesses","They used only cavalry","They avoided all combat"],answer:1,explanation:"Morgan built his plan around militia's tendency to retreat — turning a weakness into a trap."},
+  {text:"In what colony/state was Cowpens fought?",options:["Virginia","North Carolina","South Carolina","Georgia"],answer:2,explanation:"In the South Carolina backcountry."},
+  {text:"Why are southern victories like Cowpens considered precursors to Yorktown?",options:["They captured Cornwallis","They weakened British forces and pushed Cornwallis toward the coast","They secured French ships","They ended British naval power"],answer:1,explanation:"Each southern defeat reduced Cornwallis's strength and limited his strategic options."},
+];
+
+const Q_YORKTOWN = [
+  {text:"When did the Siege of Yorktown take place?",options:["June 1781","Sep 28–Oct 19, 1781","December 1781","March 1782"],answer:1,explanation:"The decisive siege lasted about three weeks in fall 1781."},
+  {text:"Who commanded American and French forces at Yorktown?",options:["Gates and Lafayette","Washington and Rochambeau","Greene and von Steuben","Knox and Lafayette"],answer:1,explanation:"Washington commanded Americans; Rochambeau commanded French troops."},
+  {text:"Who commanded the trapped British forces?",options:["Gen. Howe","Gen. Clinton","Lord Cornwallis","Gen. Burgoyne"],answer:2,explanation:"Cornwallis was trapped on the Yorktown peninsula."},
+  {text:"What role did the French navy play?",options:["Transported British troops","Blocked British naval rescue at the Battle of the Chesapeake","Bombarded Yorktown","Evacuated civilians"],answer:1,explanation:"Admiral de Grasse's fleet prevented the Royal Navy from rescuing Cornwallis."},
+  {text:"Why is Yorktown considered 'decisive' even though the Treaty of Paris came later?",options:["Every British soldier was killed","It destroyed Britain's political will to continue the war","It captured King George","America invaded England"],answer:1,explanation:"The surrender made continued war politically unsustainable in Parliament."},
+  {text:"How many British soldiers surrendered at Yorktown?",options:["2,000","5,000","About 8,000","15,000"],answer:2,explanation:"About 8,000 troops surrendered — a devastating blow to British strength."},
+  {text:"What does Yorktown demonstrate about the importance of alliance coordination?",options:["Allies weren't needed","Victory required precise timing between American troops, French army, and French navy","Only the navy mattered","France did all the fighting"],answer:1,explanation:"The convergence of land and naval forces from multiple nations made the siege possible."},
+  {text:"How had American military capability changed from 1776 to 1781?",options:["It hadn't changed","The army could now execute complex, multi-force siege operations","They relied entirely on militia","They had abandoned all European tactics"],answer:1,explanation:"From retreating across New Jersey to conducting a professional siege — a dramatic transformation."},
+  {text:"What did the British band reportedly play during the surrender?",options:["God Save the King","Rule Britannia","The World Turned Upside Down","Yankee Doodle"],answer:2,explanation:"The tune symbolized how improbable the American victory seemed to the British."},
+];
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// WORLD WAR II QUESTION BANKS — APUSH Period 7 (1890–1945)
+// Emphasis on causation, mobilization, strategic significance, home front
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const Q_PEARLHARBOR = [
+  {text:"When did Japan attack Pearl Harbor?",options:["December 7, 1941","June 6, 1944","August 6, 1945","September 1, 1939"],answer:0,explanation:"December 7, 1941 — 'a date which will live in infamy.'"},
+  {text:"Where is Pearl Harbor located?",options:["Philippines","Hawaii","California","Guam"],answer:1,explanation:"On the island of Oahu, Hawaii — home to the U.S. Pacific Fleet."},
+  {text:"What was the primary Japanese strategic goal of the attack?",options:["Invade the U.S. mainland","Destroy the Pacific Fleet to prevent interference with expansion","Capture Hawaii permanently","Force immediate U.S. surrender"],answer:1,explanation:"Japan wanted to cripple U.S. naval power so it could conquer Southeast Asia unopposed."},
+  {text:"How did Pearl Harbor change U.S. political constraints on entering the war?",options:["Congress still refused to act","It unified public opinion and Congress declared war the next day","Only the Navy responded","The U.S. remained neutral"],answer:1,explanation:"The attack eliminated isolationist opposition — war was declared with only one dissenting vote."},
+  {text:"What critical U.S. assets were NOT at Pearl Harbor during the attack?",options:["Submarines","Aircraft carriers","Destroyers","Fuel depots"],answer:1,explanation:"The carriers were at sea — their survival proved crucial for the Pacific War."},
+  {text:"How many American service members were killed at Pearl Harbor?",options:["About 500","About 1,200","About 2,400","About 5,000"],answer:2,explanation:"About 2,400 killed and 1,100 wounded."},
+  {text:"What famous ship was sunk and became a memorial?",options:["USS Missouri","USS Arizona","USS Enterprise","USS Yorktown"],answer:1,explanation:"The USS Arizona sank with 1,177 crew — now a memorial at Pearl Harbor."},
+  {text:"Why can Pearl Harbor be understood as both a military AND psychological event?",options:["The damage was minimal","The shock unified a divided nation and transformed public willingness to fight","Japan immediately surrendered","It had no lasting impact"],answer:1,explanation:"Beyond physical damage, the attack psychologically transformed American isolationism into war resolve."},
+  {text:"What was the U.S. foreign policy stance before Pearl Harbor?",options:["Actively at war","Officially neutral but providing aid to Allies","Allied with Japan","Completely isolationist with no foreign involvement"],answer:1,explanation:"Lend-Lease and other programs aided Britain, but the U.S. was not formally at war."},
+];
+
+const Q_MIDWAY = [
+  {text:"When was the Battle of Midway?",options:["December 1941","June 1942","August 1942","November 1943"],answer:1,explanation:"June 4–7, 1942 — six months after Pearl Harbor."},
+  {text:"Why is Midway considered a turning point in the Pacific War?",options:["Japan surrendered","It shifted naval initiative from Japan to the United States","The U.S. invaded Japan","Germany was defeated there"],answer:1,explanation:"Japan lost four fleet carriers — it could no longer maintain offensive operations."},
+  {text:"What U.S. advantage proved decisive at Midway?",options:["More ships","Intelligence — they had broken Japanese codes","Better weather","Surprise attack"],answer:1,explanation:"Codebreaking allowed the U.S. to anticipate Japanese plans and set a trap."},
+  {text:"How many Japanese aircraft carriers were sunk at Midway?",options:["1","2","4","6"],answer:2,explanation:"Four fleet carriers — Akagi, Kaga, Soryu, and Hiryu — were destroyed."},
+  {text:"How did Midway differ from Pearl Harbor in terms of initiative?",options:["Japan had initiative at both","The U.S. had initiative at both","Japan attacked at Pearl Harbor; the U.S. set the trap at Midway","Neither side had initiative"],answer:2,explanation:"Pearl Harbor was a Japanese surprise; Midway was an American ambush using intelligence."},
+  {text:"Why were aircraft carriers so important in Pacific naval warfare?",options:["They carried troops","They projected air power over vast ocean distances, replacing battleships as decisive","They were fastest ships","They carried supplies"],answer:1,explanation:"Carrier-based aviation could strike hundreds of miles away, making them the new capital ships."},
+  {text:"What does Midway show about the role of decision-making under uncertainty?",options:["Commanders had perfect information","Key moments depended on imperfect intelligence and split-second tactical choices","Technology decided everything","Leadership didn't matter"],answer:1,explanation:"Despite intelligence advantages, critical decisions under fog of war shaped the outcome."},
+];
+
+const Q_DDAY = [
+  {text:"What was the code name for the Allied invasion of Normandy?",options:["Operation Market Garden","Operation Overlord","Operation Barbarossa","Operation Torch"],answer:1,explanation:"Operation Overlord — the largest amphibious invasion in history."},
+  {text:"On what date did D-Day take place?",options:["June 6, 1944","June 6, 1943","July 4, 1944","May 8, 1945"],answer:0,explanation:"June 6, 1944."},
+  {text:"Who was the Supreme Commander of Allied forces?",options:["George Patton","Bernard Montgomery","Dwight D. Eisenhower","Douglas MacArthur"],answer:2,explanation:"General Eisenhower coordinated the massive multi-national operation."},
+  {text:"How many beaches were assaulted on D-Day?",options:["3","4","5","7"],answer:2,explanation:"Five beaches: Utah, Omaha, Gold, Juno, and Sword."},
+  {text:"Which beach saw the heaviest American casualties?",options:["Utah","Omaha","Gold","Sword"],answer:1,explanation:"Omaha Beach — strong German defenses caused devastating casualties."},
+  {text:"What did Allied paratroopers do before the beach landings?",options:["Bombed bridges","Dropped behind enemy lines to disrupt German reinforcements","Landed by submarine","Attacked from the south"],answer:1,explanation:"82nd and 101st Airborne divisions dropped overnight behind German lines."},
+  {text:"What was the Atlantic Wall?",options:["A U.S. naval fleet","German coastal fortification system","A British spy network","An Allied bombing campaign"],answer:1,explanation:"Extensive German coastal defenses built to repel an invasion."},
+  {text:"Who commanded German forces in Normandy?",options:["Hitler directly","Field Marshal Rommel","General Guderian","Admiral Dönitz"],answer:1,explanation:"Rommel oversaw the Atlantic Wall defenses in the invasion area."},
+  {text:"About how many Allied troops landed on D-Day?",options:["50,000","100,000","156,000","300,000"],answer:2,explanation:"Approximately 156,000 troops from multiple nations."},
+  {text:"Why was D-Day a political and strategic achievement, not just tactical?",options:["It ended the war immediately","Securing a beachhead opened a second front, relieving pressure on the Soviet Union","It captured Hitler","France switched sides"],answer:1,explanation:"The Western Front forced Germany to fight on two fronts simultaneously."},
+  {text:"How does D-Day illustrate the relationship between industrial capacity and warfare?",options:["Industry didn't matter","The invasion required massive production of ships, vehicles, weapons, and supplies","Only brave soldiers mattered","Technology was irrelevant"],answer:1,explanation:"D-Day was possible only because of America's enormous industrial output."},
+];
+
+const Q_BULGE = [
+  {text:"When did the Battle of the Bulge begin?",options:["June 1944","October 1944","December 16, 1944","January 1945"],answer:2,explanation:"Germany's surprise offensive began December 16, 1944."},
+  {text:"Why was it called the 'Battle of the Bulge'?",options:["Soldiers gained weight","German advance created a bulge in Allied lines","The terrain was hilly","Troops had excess supplies"],answer:1,explanation:"The German push created a 'bulge' in the Allied front."},
+  {text:"Why would Germany launch a risky winter offensive so late in the war?",options:["They were winning easily","A desperate gamble to split Allied forces and negotiate a separate peace","They had unlimited reserves","The weather was favorable for offense"],answer:1,explanation:"Hitler hoped to split the Allies and force negotiation — a last-ditch gamble."},
+  {text:"Which town's defense became legendary?",options:["Paris","Bastogne","Antwerp","Aachen"],answer:1,explanation:"The 101st Airborne's surrounded defense of Bastogne became iconic."},
+  {text:"What was General McAuliffe's famous reply when asked to surrender?",options:["Never!","Come and get us","Nuts!","No thank you"],answer:2,explanation:"The one-word response became one of WWII's most famous quotes."},
+  {text:"What weather condition initially helped the Germans?",options:["Heavy rain","Dense fog and overcast skies grounding Allied aircraft","Extreme heat","Flooding"],answer:1,explanation:"Cloud cover neutralized Allied air superiority for critical days."},
+  {text:"Which general's army made a remarkable turn to relieve Bastogne?",options:["Eisenhower","Bradley","Patton","Montgomery"],answer:2,explanation:"Patton's Third Army executed a 90-degree pivot in winter — a remarkable feat."},
+  {text:"About how many American casualties occurred in the Bulge?",options:["19,000","47,000","80,000","120,000"],answer:2,explanation:"About 80,000 — the costliest single American battle of WWII."},
+  {text:"Why can 'holding the line' be historically significant even without gaining territory?",options:["It can't be","Preventing a breakthrough preserved Allied strategy and morale","Only offensive victories matter","Defense is always insignificant"],answer:1,explanation:"Bastogne's defense denied Germany its objectives and bought time for counterattack."},
+];
+
+const Q_IWOJIMA = [
+  {text:"Where is Iwo Jima located?",options:["Philippines","Pacific Ocean, about 750 miles south of Tokyo","Mediterranean Sea","English Channel"],answer:1,explanation:"A small volcanic island strategically positioned near the Japanese mainland."},
+  {text:"Why did the U.S. want to capture Iwo Jima?",options:["Oil reserves","Airfields for fighter escorts and emergency B-29 bomber landings","Naval port","Prisoner rescue"],answer:1,explanation:"Its airfields would support the strategic bombing campaign against Japan."},
+  {text:"What famous photograph was taken on Iwo Jima?",options:["V-J Day kiss","Raising the flag on Mount Suribachi","MacArthur's return","Eisenhower with paratroopers"],answer:1,explanation:"The iconic flag-raising became one of the most famous images in American history."},
+  {text:"What made Iwo Jima so difficult to attack?",options:["Dense jungle","An elaborate system of 11 miles of tunnels and hundreds of bunkers","Swamp terrain","Naval mines"],answer:1,explanation:"Japanese defenders built an underground fortress connected by tunnels."},
+  {text:"Who commanded Japanese forces on Iwo Jima?",options:["Admiral Yamamoto","General Tojo","General Kuribayashi","Admiral Nagumo"],answer:2,explanation:"Kuribayashi designed the innovative defense-in-depth strategy."},
+  {text:"How long did the battle last?",options:["3 days","2 weeks","About 36 days","3 months"],answer:2,explanation:"February 19 to March 26, 1945 — far longer than the expected few days."},
+  {text:"How did 'expected quick victory' assumptions affect planning?",options:["They improved accuracy","Underestimating the defense led to insufficient preparation for a prolonged fight","They had no effect","Commanders always expected a long battle"],answer:1,explanation:"The gap between expectation and reality cost thousands of additional casualties."},
+  {text:"How many U.S. Marines were killed on Iwo Jima?",options:["About 2,000","About 7,000","About 15,000","About 25,000"],answer:1,explanation:"About 6,800 killed and 19,000 wounded — horrific casualty rates."},
+  {text:"What does the famous photograph tell us about the power of images in wartime?",options:["Nothing — it's just a photo","A single image can shape public perception, boost morale, and become a symbol far beyond the event itself","Photos always show the full truth","Images were irrelevant in WWII"],answer:1,explanation:"The image became the most reproduced photograph in history and a symbol of American resolve."},
+];
+
+const Q_OKINAWA = [
+  {text:"When did the Battle of Okinawa begin?",options:["February 1945","April 1, 1945","June 1945","August 1945"],answer:1,explanation:"U.S. forces landed on April 1, 1945 — the last major battle before the planned invasion of Japan."},
+  {text:"Why was Okinawa called a 'doorstep' battle?",options:["It had many doors","It was close enough to Japan to serve as a staging base for invasion","It was Japan's capital","It was the smallest island"],answer:1,explanation:"Only 340 miles from mainland Japan — the last stepping stone."},
+  {text:"How long did the battle last?",options:["1 week","3 weeks","About 82 days","6 months"],answer:2,explanation:"April 1 to June 22, 1945 — nearly three months of intense fighting."},
+  {text:"What Japanese tactic caused devastating naval casualties?",options:["Submarine warfare","Kamikaze (suicide aircraft) attacks","Naval mines","Torpedo boats"],answer:1,explanation:"Kamikaze attacks sank or damaged hundreds of Allied ships."},
+  {text:"Approximately how many people died in the Battle of Okinawa (all sides + civilians)?",options:["10,000","50,000","100,000","Over 200,000"],answer:3,explanation:"Over 200,000 total — including approximately 100,000 Okinawan civilians."},
+  {text:"How did the massive casualties at Okinawa influence U.S. decision-making?",options:["They had no influence","The projected cost of invading mainland Japan shaped debates about alternative ways to end the war","The U.S. decided to negotiate immediately","Casualties were considered acceptable"],answer:1,explanation:"Okinawa's losses directly influenced the decision to use atomic weapons rather than invade."},
+  {text:"What changes from earlier Pacific campaigns to Okinawa in 1945?",options:["Fighting became easier","Japanese defensive strategies became more sophisticated and costly","The U.S. had fewer resources","Weather no longer mattered"],answer:1,explanation:"Each island battle taught Japan to build deeper defenses, making each assault more costly."},
+  {text:"How did Okinawa affect the civilian population?",options:["Civilians were safely evacuated","Massive civilian casualties occurred — caught between two armies","No civilians lived there","Civilians all escaped by boat"],answer:1,explanation:"Okinawan civilians suffered terribly, including mass suicides driven by propaganda."},
+];
+
+
+// ─── BATTLE CONFIGS ──────────────────────────────────────────────────────────
 const BATTLES = [
-  { id:"lexington",name:"Lexington & Concord",date:"Apr 1775",general:"Gen. Gage",icon:"🔫",questions:Q_LEXINGTON,context:"British marched to seize colonial weapons. Skirmishes at Lexington and Concord ignited the Revolution.",enemies:[{name:"British Regulars",hp:70,dmg:14,icon:"🔴"},{name:"Light Infantry",hp:65,dmg:16,icon:"🟠"},{name:"Gage's Guard",hp:65,dmg:18,icon:"⭐"}]},
-  { id:"ticonderoga",name:"Fort Ticonderoga",date:"May 1775",general:"Capt. Delaplace",icon:"🏰",questions:Q_TICONDEROGA,context:"Ethan Allen's Green Mountain Boys captured this fort, providing vital artillery.",enemies:[{name:"Fort Garrison",hp:70,dmg:16,icon:"🔴"},{name:"British Sentries",hp:70,dmg:18,icon:"🟠"},{name:"Delaplace's Guard",hp:80,dmg:20,icon:"⭐"}]},
-  { id:"bunker",name:"Bunker Hill",date:"Jun 1775",general:"Gen. Howe",icon:"⛰️",questions:Q_BUNKER,context:"Colonial forces on Breed's Hill withstood two British assaults before falling to the third.",enemies:[{name:"British Grenadiers",hp:80,dmg:18,icon:"🔴"},{name:"Light Companies",hp:75,dmg:20,icon:"🟠"},{name:"Howe's Vanguard",hp:85,dmg:22,icon:"⭐"}]},
-  { id:"boston",name:"Siege of Boston",date:"Mar 1776",general:"Gen. Howe",icon:"🏘️",questions:Q_BOSTON,context:"Washington surrounded Boston for 11 months. Knox's cannons on Dorchester Heights forced evacuation.",enemies:[{name:"Boston Garrison",hp:85,dmg:18,icon:"🔴"},{name:"Royal Marines",hp:80,dmg:20,icon:"🟠"},{name:"Howe's Regulars",hp:95,dmg:22,icon:"⭐"}]},
-  { id:"longisland",name:"Battle of Long Island",date:"Aug 1776",general:"Gen. Howe",icon:"🏝️",boss:true,bossReviewDmg:10,questions:Q_LONGISLAND,context:"Largest battle of the war. Howe flanked through Jamaica Pass. Washington's evacuation saved the army.",enemies:[{name:"Hessian Grenadiers",hp:110,dmg:22,icon:"🔴"},{name:"British Flankers",hp:120,dmg:24,icon:"🟠"},{name:"Gen. Howe",hp:130,dmg:28,icon:"👑"}]},
-  { id:"trenton",name:"Battle of Trenton",date:"Dec 1776",general:"Col. Rall",icon:"🎄",questions:Q_TRENTON,context:"Washington crossed the Delaware on Christmas night to surprise Hessian forces.",enemies:[{name:"Hessian Fusiliers",hp:65,dmg:16,icon:"🔴"},{name:"Hessian Jägers",hp:65,dmg:18,icon:"🟠"},{name:"Col. Rall's Guard",hp:70,dmg:20,icon:"⭐"}]},
-  { id:"princeton",name:"Battle of Princeton",date:"Jan 1777",general:"Cornwallis",icon:"⚔️",questions:Q_PRINCETON,context:"Washington left campfires burning to trick Cornwallis and marched to Princeton.",enemies:[{name:"4th Regiment",hp:75,dmg:18,icon:"🔴"},{name:"55th Regiment",hp:75,dmg:20,icon:"🟠"},{name:"Cornwallis Rear Guard",hp:80,dmg:22,icon:"⭐"}]},
-  { id:"brandywine",name:"Brandywine",date:"Sep 1777",general:"Gen. Howe",icon:"🌊",questions:Q_BRANDYWINE,context:"Washington tried to block the British advance on Philadelphia. Howe's flanking led to defeat.",enemies:[{name:"British Regulars",hp:85,dmg:20,icon:"🔴"},{name:"Cornwallis Flankers",hp:85,dmg:22,icon:"🟠"},{name:"Howe's Command",hp:90,dmg:24,icon:"⭐"}]},
-  { id:"germantown",name:"Germantown",date:"Oct 1777",general:"Gen. Howe",icon:"⚔️",questions:Q_GERMANTOWN,context:"Washington launched a bold dawn attack but fog caused confusion and friendly fire.",enemies:[{name:"British Pickets",hp:85,dmg:20,icon:"🔴"},{name:"Chew House Defenders",hp:90,dmg:22,icon:"🟠"},{name:"Howe's Reserve",hp:95,dmg:24,icon:"⭐"}]},
-  { id:"saratoga",name:"Battle of Saratoga",date:"Oct 1777",general:"Burgoyne",icon:"🏳️",boss:true,bossReviewDmg:10,questions:Q_SARATOGA,context:"The turning point. Burgoyne surrendered, convincing France to join as America's ally.",enemies:[{name:"British Line Infantry",hp:130,dmg:24,icon:"🔴"},{name:"Hessian Auxiliaries",hp:120,dmg:26,icon:"🟠"},{name:"Gen. Burgoyne",hp:150,dmg:30,icon:"👑"}]},
-  { id:"valleyforge",name:"Valley Forge",date:"Winter 1777-78",general:"Winter",icon:"🏕️",questions:Q_VALLEYFORGE,context:"Not a battle but a grueling winter camp. Von Steuben transformed the army.",enemies:[{name:"Bitter Cold",hp:100,dmg:16,icon:"❄️"},{name:"Disease",hp:100,dmg:18,icon:"🤒"},{name:"Starvation",hp:100,dmg:20,icon:"💀"}]},
+  {id:"lexington",name:"Lexington & Concord",date:"Apr 1775",general:"Gen. Gage",icon:"🔫",questions:Q_LEXINGTON,context:"British troops marched to seize colonial weapons. The resulting skirmishes ignited the Revolution.",enemies:[{name:"British Regulars",hp:70,dmg:14,icon:"🔴"},{name:"Light Infantry",hp:65,dmg:16,icon:"🟠"},{name:"Gage\'s Guard",hp:65,dmg:18,icon:"⭐"}]},
+  {id:"ticonderoga",name:"Fort Ticonderoga",date:"May 1775",general:"Capt. Delaplace",icon:"🏰",questions:Q_TICONDEROGA,context:"Ethan Allen\'s Green Mountain Boys captured this fort, providing vital artillery for Boston.",enemies:[{name:"Fort Garrison",hp:70,dmg:16,icon:"🔴"},{name:"British Sentries",hp:70,dmg:18,icon:"🟠"},{name:"Delaplace\'s Guard",hp:80,dmg:20,icon:"⭐"}]},
+  {id:"bunker",name:"Bunker Hill",date:"Jun 1775",general:"Gen. Howe",icon:"⛰️",questions:Q_BUNKER,context:"Colonial forces on Breed\'s Hill withstood two British assaults. The pyrrhic British victory proved colonials could fight.",enemies:[{name:"British Grenadiers",hp:80,dmg:18,icon:"🔴"},{name:"Light Companies",hp:75,dmg:20,icon:"🟠"},{name:"Howe\'s Vanguard",hp:85,dmg:22,icon:"⭐"}]},
+  {id:"boston",name:"Siege of Boston",date:"Mar 1776",general:"Gen. Howe",icon:"🏘️",questions:Q_BOSTON,context:"Washington surrounded Boston for 11 months. Knox\'s cannons on Dorchester Heights forced British evacuation.",enemies:[{name:"Boston Garrison",hp:85,dmg:18,icon:"🔴"},{name:"Royal Marines",hp:80,dmg:20,icon:"🟠"},{name:"Howe\'s Regulars",hp:95,dmg:22,icon:"⭐"}]},
+  {id:"longisland",name:"Battle of Long Island",date:"Aug 1776",general:"Gen. Howe",icon:"🏝️",boss:true,bossReviewDmg:10,questions:Q_LONGISLAND,context:"The largest battle of the Revolution. Washington\'s nighttime evacuation saved the army from destruction.",enemies:[{name:"Hessian Grenadiers",hp:110,dmg:22,icon:"🔴"},{name:"British Flankers",hp:120,dmg:24,icon:"🟠"},{name:"Gen. Howe",hp:130,dmg:28,icon:"👑"}]},
+  {id:"trenton",name:"Battle of Trenton",date:"Dec 1776",general:"Col. Rall",icon:"🎄",questions:Q_TRENTON,context:"Washington crossed the Delaware on Christmas night to surprise Hessian forces — a desperately needed victory.",enemies:[{name:"Hessian Fusiliers",hp:65,dmg:16,icon:"🔴"},{name:"Hessian Jägers",hp:65,dmg:18,icon:"🟠"},{name:"Col. Rall\'s Guard",hp:70,dmg:20,icon:"⭐"}]},
+  {id:"princeton",name:"Battle of Princeton",date:"Jan 1777",general:"Cornwallis",icon:"⚔️",questions:Q_PRINCETON,context:"Washington left campfires burning to trick Cornwallis, completing the \'Ten Crucial Days\' that saved the Revolution.",enemies:[{name:"4th Regiment",hp:75,dmg:18,icon:"🔴"},{name:"55th Regiment",hp:75,dmg:20,icon:"🟠"},{name:"Cornwallis Rear Guard",hp:80,dmg:22,icon:"⭐"}]},
+  {id:"brandywine",name:"Brandywine",date:"Sep 1777",general:"Gen. Howe",icon:"🌊",questions:Q_BRANDYWINE,context:"Washington tried to block the British advance on Philadelphia. Howe\'s flanking led to defeat and Philadelphia fell.",enemies:[{name:"British Regulars",hp:85,dmg:20,icon:"🔴"},{name:"Cornwallis Flankers",hp:85,dmg:22,icon:"🟠"},{name:"Howe\'s Command",hp:90,dmg:24,icon:"⭐"}]},
+  {id:"germantown",name:"Germantown",date:"Oct 1777",general:"Gen. Howe",icon:"⚔️",questions:Q_GERMANTOWN,context:"Washington\'s bold dawn attack failed due to fog, but the attempt impressed France enough to help secure the alliance.",enemies:[{name:"British Pickets",hp:85,dmg:20,icon:"🔴"},{name:"Chew House Defenders",hp:90,dmg:22,icon:"🟠"},{name:"Howe\'s Reserve",hp:95,dmg:24,icon:"⭐"}]},
+  {id:"saratoga",name:"Battle of Saratoga",date:"Oct 1777",general:"Burgoyne",icon:"🏳️",boss:true,bossReviewDmg:10,questions:Q_SARATOGA,context:"The turning point. Burgoyne\'s surrender convinced France to formally ally with America.",enemies:[{name:"British Line Infantry",hp:130,dmg:24,icon:"🔴"},{name:"Hessian Auxiliaries",hp:120,dmg:26,icon:"🟠"},{name:"Gen. Burgoyne",hp:150,dmg:30,icon:"👑"}]},
+  {id:"valleyforge",name:"Valley Forge",date:"Winter 1777-78",general:"Winter",icon:"🏕️",questions:Q_VALLEYFORGE,context:"A grueling winter camp where von Steuben transformed the Continental Army into a professional fighting force.",enemies:[{name:"Bitter Cold",hp:100,dmg:16,icon:"❄️"},{name:"Disease",hp:100,dmg:18,icon:"🤒"},{name:"Starvation",hp:100,dmg:20,icon:"💀"}]},
+  {id:"cowpens",name:"Battle of Cowpens",date:"Jan 1781",general:"Col. Tarleton",icon:"🐄",questions:Q_COWPENS,context:"Daniel Morgan\'s brilliant tactics turned militia\'s weakness into a trap, destroying a key British force in the South.",enemies:[{name:"British Dragoons",hp:90,dmg:20,icon:"🔴"},{name:"Tarleton\'s Legion",hp:95,dmg:22,icon:"🟠"},{name:"Col. Tarleton",hp:100,dmg:26,icon:"⭐"}]},
+  {id:"yorktown",name:"Siege of Yorktown",date:"Oct 1781",general:"Lord Cornwallis",icon:"🏰",boss:true,bossReviewDmg:12,questions:Q_YORKTOWN,context:"The decisive siege. American and French forces trapped Cornwallis while the French navy blocked escape. Britain\'s surrender ended the war.",enemies:[{name:"British Regulars",hp:140,dmg:26,icon:"🔴"},{name:"Hessian Veterans",hp:130,dmg:28,icon:"🟠"},{name:"Lord Cornwallis",hp:160,dmg:32,icon:"👑"}]},
 ];
 const REV_WAR_MAP = [
   {id:"yorktown",name:"Yorktown",date:"Oct 1781",general:"Cornwallis",boss:"FINAL BOSS",icon:"🏰"},
-  {id:"chesapeake",name:"Chesapeake",date:"Sep 1781",general:"Adm. Graves",icon:"⚓"},
-  {id:"eutaw",name:"Eutaw Springs",date:"Sep 1781",general:"Stuart",icon:"🌿"},
-  {id:"guilford",name:"Guilford CH",date:"Mar 1781",general:"Cornwallis",icon:"⚔️"},
   {id:"cowpens",name:"Cowpens",date:"Jan 1781",general:"Tarleton",boss:"BOSS",icon:"🐄"},
-  {id:"camden",name:"Camden",date:"Aug 1780",general:"Cornwallis",icon:"⚔️"},
-  {id:"monmouth",name:"Monmouth",date:"Jun 1778",general:"Clinton",icon:"⚔️"},
   {id:"valleyforge",name:"Valley Forge",date:"Winter 1777-78",general:"Winter",icon:"🏕️"},
   {id:"saratoga",name:"Saratoga",date:"Oct 1777",general:"Burgoyne",boss:"BOSS",icon:"🏳️"},
   {id:"germantown",name:"Germantown",date:"Oct 1777",general:"Howe",icon:"⚔️"},
@@ -175,55 +294,25 @@ const REV_WAR_MAP = [
   {id:"lexington",name:"Lexington",date:"Apr 1775",general:"Gage",icon:"🔫"},
 ];
 
-// ─── WW2 QUESTIONS ───────────────────────────────────────────────────────────
-const Q_DDAY = [
-  {text:"Code name for the Allied invasion of Normandy?",options:["Market Garden","Operation Overlord","Barbarossa","Torch"],answer:1,explanation:"Operation Overlord was the Normandy invasion."},
-  {text:"On what date did D-Day take place?",options:["June 6, 1944","June 6, 1943","July 4, 1944","May 8, 1945"],answer:0,explanation:"D-Day was June 6, 1944."},
-  {text:"Supreme Commander of Allied forces on D-Day?",options:["Patton","Montgomery","Eisenhower","MacArthur"],answer:2,explanation:"Eisenhower commanded all Allied forces."},
-  {text:"How many main beaches were assaulted?",options:["3","4","5","7"],answer:2,explanation:"Five: Utah, Omaha, Gold, Juno, and Sword."},
-  {text:"Which beach had the heaviest American casualties?",options:["Utah","Omaha","Gold","Sword"],answer:1,explanation:"Omaha Beach had fiercest resistance."},
-  {text:"Which countries assaulted Gold, Juno, Sword?",options:["All American","British and Canadian","French and Polish","Soviet"],answer:1,explanation:"Gold/Sword were British, Juno was Canadian."},
-  {text:"What did paratroopers do before beach landings?",options:["Bombed bridges","Dropped behind lines overnight","Landed by submarine","Attacked from south"],answer:1,explanation:"Airborne dropped behind German lines before dawn."},
-  {text:"Which US airborne divisions jumped into Normandy?",options:["82nd and 101st","1st and 2nd","10th and 11th","75th and 80th"],answer:0,explanation:"82nd and 101st Airborne Divisions."},
-  {text:"What was the Atlantic Wall?",options:["US naval fleet","German coastal fortifications","British spy network","Bombing campaign"],answer:1,explanation:"Germany's extensive coastal defense system."},
-  {text:"Who commanded German forces in Normandy?",options:["Hitler","Field Marshal Rommel","Guderian","Dönitz"],answer:1,explanation:"Rommel oversaw Atlantic Wall defenses."},
-  {text:"About how many Allied troops landed on D-Day?",options:["50,000","100,000","156,000","300,000"],answer:2,explanation:"Approximately 156,000 troops landed June 6."},
-  {text:"What does the D in D-Day stand for?",options:["Doom","Deliverance","Day (military term)","Democracy"],answer:2,explanation:"D-Day is military shorthand where D means 'Day.'"},
-];
-const Q_BULGE = [
-  {text:"When did the Battle of the Bulge begin?",options:["June 1944","October 1944","December 16, 1944","January 1945"],answer:2,explanation:"Germany's surprise offensive began Dec 16, 1944."},
-  {text:"Why 'Battle of the Bulge'?",options:["Soldiers gained weight","German advance created a bulge in lines","Hilly terrain","Allied troops swelled"],answer:1,explanation:"The advance pushed a 'bulge' into Allied front lines."},
-  {text:"German code name for this offensive?",options:["Nordwind","Spring Awakening","Watch on the Rhine","Fall Gelb"],answer:2,explanation:"Wacht am Rhein (Watch on the Rhine)."},
-  {text:"Which forest did Germans attack through?",options:["Black Forest","Hürtgen","Ardennes","Bavarian"],answer:2,explanation:"Through the Ardennes, considered lightly defended."},
-  {text:"Which town became famous for its defense?",options:["Paris","Bastogne","Antwerp","Aachen"],answer:1,explanation:"101st Airborne's defense of Bastogne was legendary."},
-  {text:"General McAuliffe's reply when asked to surrender?",options:["Never!","Come get us","Nuts!","No thanks"],answer:2,explanation:"'Nuts!' became one of the war's most famous quotes."},
-  {text:"What weather initially helped the Germans?",options:["Heavy rain","Dense fog/overcast","Extreme heat","Flooding"],answer:1,explanation:"Overcast skies grounded Allied air support."},
-  {text:"Which general's army relieved Bastogne?",options:["Eisenhower","Bradley","Patton","Montgomery"],answer:2,explanation:"Patton's Third Army made a remarkable turn to relieve Bastogne."},
-  {text:"About how many American casualties occurred?",options:["19,000","47,000","80,000","120,000"],answer:2,explanation:"About 80,000 — costliest US battle in WWII."},
-];
-const Q_IWOJIMA = [
-  {text:"Where is Iwo Jima located?",options:["Philippines","Pacific, south of Japan","Mediterranean","English Channel"],answer:1,explanation:"About 750 miles south of Tokyo."},
-  {text:"Why did the US want Iwo Jima?",options:["Oil","Airfield for bombing Japan","Naval port","Prisoner rescue"],answer:1,explanation:"Airfields to support B-29 bombing runs on mainland Japan."},
-  {text:"Famous photograph taken on Iwo Jima?",options:["V-J Day kiss","Flag on Mt. Suribachi","MacArthur's return","Eisenhower with paratroopers"],answer:1,explanation:"Iconic flag-raising on Mount Suribachi, Feb 23, 1945."},
-  {text:"What made Iwo Jima so hard to attack?",options:["Dense jungle","Tunnel and bunker system","Swamp terrain","Naval mines"],answer:1,explanation:"11 miles of tunnels and hundreds of hidden bunkers."},
-  {text:"Japanese commander on Iwo Jima?",options:["Yamamoto","Tojo","Kuribayashi","Nagumo"],answer:2,explanation:"General Kuribayashi designed the island's defense."},
-  {text:"How long did the battle last?",options:["3 days","2 weeks","About 36 days","3 months"],answer:2,explanation:"Feb 19 to Mar 26, 1945 — 36 days."},
-  {text:"Volcanic feature dominating the island?",options:["Mount Fuji","Mount Suribachi","Diamond Head","Mount Olympus"],answer:1,explanation:"546-foot dormant volcano at the island's south tip."},
-  {text:"How many US Marines killed on Iwo Jima?",options:["~2,000","~7,000","~15,000","~25,000"],answer:1,explanation:"About 6,800 killed and 19,000 wounded."},
-];
-
+// ─── WW2 BATTLE CONFIGS ─────────────────────────────────────────────────────
 const WW2_BATTLES = [
-  {id:"dday",name:"D-Day: Normandy",date:"Jun 1944",general:"FM Rommel",icon:"🏖️",questions:Q_DDAY,context:"The largest amphibious invasion in history. Allied forces stormed five Normandy beaches, beginning the liberation of Western Europe.",enemies:[{name:"Beach Defenders",hp:80,dmg:18,icon:"🔴"},{name:"Wehrmacht Infantry",hp:85,dmg:20,icon:"🟠"},{name:"Atlantic Wall HQ",hp:95,dmg:24,icon:"⭐"}]},
-  {id:"bulge",name:"Battle of the Bulge",date:"Dec 1944",general:"German Command",icon:"❄️",questions:Q_BULGE,context:"Germany's last major offensive. A surprise Ardennes attack created a 'bulge' in Allied lines. Bastogne's defense and Patton's relief became legendary.",enemies:[{name:"Panzer Division",hp:95,dmg:22,icon:"🔴"},{name:"Volksgrenadiers",hp:90,dmg:24,icon:"🟠"},{name:"King Tigers",hp:110,dmg:28,icon:"⭐"}]},
-  {id:"iwojima",name:"Iwo Jima",date:"Feb 1945",general:"Gen. Kuribayashi",icon:"🏔️",boss:true,bossReviewDmg:12,questions:Q_IWOJIMA,context:"One of the bloodiest Pacific battles. Marines fought 36 days through miles of tunnels to capture vital airfields.",enemies:[{name:"Tunnel Defenders",hp:120,dmg:24,icon:"🔴"},{name:"Imperial Marines",hp:110,dmg:26,icon:"🟠"},{name:"Gen. Kuribayashi",hp:140,dmg:30,icon:"👑"}]},
+  {id:"pearlharbor",name:"Pearl Harbor",date:"Dec 1941",general:"Admiral Nagumo",icon:"💥",questions:Q_PEARLHARBOR,context:"Japan\'s surprise attack on the U.S. Pacific Fleet brought America into World War II overnight.",enemies:[{name:"Zero Fighters",hp:70,dmg:16,icon:"🔴"},{name:"Torpedo Bombers",hp:75,dmg:18,icon:"🟠"},{name:"Imperial Strike Force",hp:85,dmg:22,icon:"⭐"}]},
+  {id:"midway",name:"Battle of Midway",date:"Jun 1942",general:"Admiral Yamamoto",icon:"⚓",questions:Q_MIDWAY,context:"U.S. codebreakers set a trap that destroyed four Japanese carriers — shifting Pacific initiative to America.",enemies:[{name:"IJN Escorts",hp:80,dmg:18,icon:"🔴"},{name:"Carrier Air Groups",hp:85,dmg:20,icon:"🟠"},{name:"Admiral Yamamoto",hp:95,dmg:24,icon:"⭐"}]},
+  {id:"dday",name:"D-Day: Normandy",date:"Jun 1944",general:"FM Rommel",icon:"🏖️",boss:true,bossReviewDmg:10,questions:Q_DDAY,context:"The largest amphibious invasion in history. Allied forces stormed five Normandy beaches, opening the Western Front.",enemies:[{name:"Beach Defenders",hp:110,dmg:22,icon:"🔴"},{name:"Wehrmacht Infantry",hp:120,dmg:24,icon:"🟠"},{name:"Atlantic Wall HQ",hp:130,dmg:28,icon:"👑"}]},
+  {id:"bulge",name:"Battle of the Bulge",date:"Dec 1944",general:"German Command",icon:"❄️",questions:Q_BULGE,context:"Germany\'s last major offensive. The heroic defense of Bastogne and Patton\'s relief became legendary.",enemies:[{name:"Panzer Division",hp:95,dmg:22,icon:"🔴"},{name:"Volksgrenadiers",hp:90,dmg:24,icon:"🟠"},{name:"King Tigers",hp:110,dmg:28,icon:"⭐"}]},
+  {id:"iwojima",name:"Iwo Jima",date:"Feb 1945",general:"Gen. Kuribayashi",icon:"🏔️",questions:Q_IWOJIMA,context:"Marines fought 36 days through miles of tunnels to capture vital airfields near Japan.",enemies:[{name:"Tunnel Defenders",hp:100,dmg:22,icon:"🔴"},{name:"Imperial Marines",hp:100,dmg:24,icon:"🟠"},{name:"Kuribayashi\'s HQ",hp:120,dmg:28,icon:"⭐"}]},
+  {id:"okinawa",name:"Battle of Okinawa",date:"Apr 1945",general:"Gen. Ushijima",icon:"🌊",boss:true,bossReviewDmg:12,questions:Q_OKINAWA,context:"The last major battle before the planned invasion of Japan. 82 days of brutal fighting with massive casualties on all sides.",enemies:[{name:"Shuri Line Defenders",hp:130,dmg:26,icon:"🔴"},{name:"Kamikaze Squadrons",hp:120,dmg:28,icon:"🟠"},{name:"Gen. Ushijima",hp:150,dmg:32,icon:"👑"}]},
 ];
 const WW2_MAP = [
   {id:"berlin",name:"Fall of Berlin",date:"Apr 1945",general:"Soviet Forces",boss:"FINAL BOSS",icon:"🏛️"},
-  {id:"rhine",name:"Crossing the Rhine",date:"Mar 1945",general:"Various",icon:"🌉"},
-  {id:"iwojima",name:"Iwo Jima",date:"Feb 1945",general:"Kuribayashi",boss:"BOSS",icon:"🏔️"},
+  {id:"okinawa",name:"Okinawa",date:"Apr 1945",general:"Ushijima",boss:"BOSS",icon:"🌊"},
+  {id:"iwojima",name:"Iwo Jima",date:"Feb 1945",general:"Kuribayashi",icon:"🏔️"},
   {id:"bulge",name:"Battle of the Bulge",date:"Dec 1944",general:"German HQ",icon:"❄️"},
-  {id:"dday",name:"D-Day",date:"Jun 1944",general:"Rommel",icon:"🏖️"},
+  {id:"dday",name:"D-Day",date:"Jun 1944",general:"Rommel",boss:"BOSS",icon:"🏖️"},
+  {id:"midway",name:"Midway",date:"Jun 1942",general:"Yamamoto",icon:"⚓"},
+  {id:"pearlharbor",name:"Pearl Harbor",date:"Dec 1941",general:"Nagumo",icon:"💥"},
 ];
+
 
 // ═════════════════════════════════════════════════════════════════════════════
 // CHIBI SVGs (compact)
@@ -385,7 +474,7 @@ function UnitSelectScreen({battle,unlockedUnits,coins,onUnlock,onGo,onBack}){
 }
 
 function HomeScreen({onNav,coins,userName,onLogout}){return(<div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",minHeight:"80vh",gap:24,padding:20}}><div style={{fontFamily:fonts.heading,fontSize:"2.2rem",fontWeight:700,color:"#FFD700",textAlign:"center"}}>HISTORY LEGENDS</div><div style={{fontFamily:fonts.body,color:"#9E9E9E"}}>Welcome, <span style={{color:"#4FC3F7"}}>{userName}</span></div><div style={{background:"rgba(255,215,0,0.08)",border:"1px solid rgba(255,215,0,0.2)",borderRadius:10,padding:"10px 24px",display:"flex",alignItems:"center",gap:10}}><span style={{fontSize:"1.2rem"}}>🪙</span><span style={{fontFamily:fonts.mono,fontSize:"1.3rem",color:"#FFD700",fontWeight:700}}>{coins}</span></div><div style={{width:"100%",maxWidth:380,display:"flex",flexDirection:"column",gap:10}}><MC onClick={()=>onNav(SCREENS.US_HISTORY)}><span style={{fontSize:"1.5rem"}}>🇺🇸</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",fontWeight:700,color:"#4FC3F7"}}>US HISTORY</div><div style={{fontFamily:fonts.body,fontSize:"0.8rem",color:"#888",marginTop:2}}>Revolutionary War</div></div></MC><MC disabled accent="#666"><span style={{fontSize:"1.5rem"}}>🏰</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",color:"#666"}}>EUROPEAN — Coming soon</div></div></MC></div><button onClick={onLogout} style={{background:"none",border:"none",fontFamily:fonts.body,fontSize:"0.8rem",color:"#666",cursor:"pointer",padding:8,marginTop:8}}>Sign Out</button></div>);}
-function USScreen({onNav,onBack}){return(<div style={{padding:20,animation:"fadeIn 0.4s ease-out"}}><BB onClick={onBack}/><div style={{textAlign:"center",marginBottom:24}}><div style={{fontFamily:fonts.heading,fontSize:"1.5rem",fontWeight:700,color:"#E0E0E0"}}>US History</div></div><div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:400,margin:"0 auto"}}><MC onClick={()=>onNav(SCREENS.REV_WAR)}><span style={{fontSize:"1.4rem"}}>⚔️</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",fontWeight:700,color:"#4FC3F7"}}>REVOLUTIONARY WAR</div><div style={{fontFamily:fonts.body,fontSize:"0.8rem",color:"#888",marginTop:2}}>1775–1783 · 11 Battles</div></div></MC><MC onClick={()=>onNav(SCREENS.WW2)}><span style={{fontSize:"1.4rem"}}>🪖</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",fontWeight:700,color:"#81C784"}}>WORLD WAR II</div><div style={{fontFamily:fonts.body,fontSize:"0.8rem",color:"#888",marginTop:2}}>1941–1945 · 3 Battles</div></div></MC><MC disabled><span style={{fontSize:"1.4rem"}}>🦅</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",color:"#666"}}>CIVIL WAR — Coming soon</div></div></MC></div></div>);}
+function USScreen({onNav,onBack}){return(<div style={{padding:20,animation:"fadeIn 0.4s ease-out"}}><BB onClick={onBack}/><div style={{textAlign:"center",marginBottom:24}}><div style={{fontFamily:fonts.heading,fontSize:"1.5rem",fontWeight:700,color:"#E0E0E0"}}>US History</div></div><div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:400,margin:"0 auto"}}><MC onClick={()=>onNav(SCREENS.REV_WAR)}><span style={{fontSize:"1.4rem"}}>⚔️</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",fontWeight:700,color:"#4FC3F7"}}>REVOLUTIONARY WAR</div><div style={{fontFamily:fonts.body,fontSize:"0.8rem",color:"#888",marginTop:2}}>1775–1783 · 13 Battles</div></div></MC><MC onClick={()=>onNav(SCREENS.WW2)}><span style={{fontSize:"1.4rem"}}>🪖</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",fontWeight:700,color:"#81C784"}}>WORLD WAR II</div><div style={{fontFamily:fonts.body,fontSize:"0.8rem",color:"#888",marginTop:2}}>1941–1945 · 6 Battles</div></div></MC><MC disabled><span style={{fontSize:"1.4rem"}}>🦅</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",color:"#666"}}>CIVIL WAR — Coming soon</div></div></MC></div></div>);}
 
 function MapScreen({onBack,onSelect,completed,mapData,battles,title}){const sR=useRef(null);useEffect(()=>{if(sR.current)sR.current.scrollTop=sR.current.scrollHeight;},[]);const m=mapData,ns=110,mh=m.length*ns+120,pw=320;const gX=i=>{const c=(m.length-1-i)%6;return[0.5,0.28,0.5,0.72,0.5,0.35][c];};const pts=m.map((_,i)=>({x:gX(i)*pw,y:60+i*ns}));const pD=pts.reduce((a,p,i)=>{if(i===0)return`M ${p.x} ${p.y}`;const pr=pts[i-1];const cy=(pr.y+p.y)/2;return`${a} C ${pr.x} ${cy}, ${p.x} ${cy}, ${p.x} ${p.y}`;},"");
   return(<div style={{height:"100vh",display:"flex",flexDirection:"column",animation:"fadeIn 0.4s ease-out"}}><div style={{padding:"12px 20px 8px",flexShrink:0}}><BB onClick={onBack}/><div style={{textAlign:"center"}}><div style={{fontFamily:fonts.heading,fontSize:"1.2rem",fontWeight:700,color:"#E0E0E0"}}>{title}</div></div></div><div ref={sR} style={{flex:1,overflowY:"auto",overflowX:"hidden"}}><div style={{position:"relative",width:"100%",maxWidth:pw,margin:"0 auto",height:mh}}><svg style={{position:"absolute",top:0,left:0,width:pw,height:mh,pointerEvents:"none"}} viewBox={`0 0 ${pw} ${mh}`}><path d={pD} fill="none" stroke="rgba(79,195,247,0.08)" strokeWidth="28" strokeLinecap="round"/><path d={pD} fill="none" stroke="rgba(79,195,247,0.15)" strokeWidth="4" strokeLinecap="round" strokeDasharray="8 6"/></svg><div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",fontFamily:fonts.heading,fontSize:"0.6rem",letterSpacing:"0.2em",color:"#FFD700",opacity:0.5}}>🏆 Victory 🏆</div><div style={{position:"absolute",bottom:15,left:"50%",transform:"translateX(-50%)",fontFamily:fonts.heading,fontSize:"0.55rem",letterSpacing:"0.2em",color:"#4FC3F7"}}>▼ Start ▼</div>
