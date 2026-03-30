@@ -13,7 +13,7 @@ const SPEED_TIERS = [
 ];
 const CRIT_MULTIPLIER = 1.5;
 const UNIT_HP_SCALE = 0.45; // each unit gets 45% of base HP (3 units ≈ 135% total)
-const SCREENS = { AUTH:"AUTH", HOME:"HOME", US_HISTORY:"US_HISTORY", REV_WAR:"REV_WAR", PRE_BATTLE:"PRE_BATTLE", UNIT_SELECT:"UNIT_SELECT", BATTLE:"BATTLE", SHOP:"SHOP" };
+const SCREENS = { AUTH:"AUTH", HOME:"HOME", US_HISTORY:"US_HISTORY", REV_WAR:"REV_WAR", WW2:"WW2", PRE_BATTLE:"PRE_BATTLE", UNIT_SELECT:"UNIT_SELECT", BATTLE:"BATTLE", SHOP:"SHOP" };
 const CHAR_STATES = { IDLE:"idle", ATTACK:"attack", HIT:"hit", CRITICAL:"critical" };
 const PHASES = { PLAYER_TURN:"PLAYER_TURN", ANSWER_RESULT:"ANSWER_RESULT", ENEMY_TURN:"ENEMY_TURN", UNIT_FALLEN:"UNIT_FALLEN", VICTORY:"VICTORY", DEFEAT:"DEFEAT" };
 const fonts = { heading:"'Cinzel', serif", body:"'EB Garamond', serif", mono:"'Share Tech Mono', monospace" };
@@ -175,6 +175,56 @@ const REV_WAR_MAP = [
   {id:"lexington",name:"Lexington",date:"Apr 1775",general:"Gage",icon:"🔫"},
 ];
 
+// ─── WW2 QUESTIONS ───────────────────────────────────────────────────────────
+const Q_DDAY = [
+  {text:"Code name for the Allied invasion of Normandy?",options:["Market Garden","Operation Overlord","Barbarossa","Torch"],answer:1,explanation:"Operation Overlord was the Normandy invasion."},
+  {text:"On what date did D-Day take place?",options:["June 6, 1944","June 6, 1943","July 4, 1944","May 8, 1945"],answer:0,explanation:"D-Day was June 6, 1944."},
+  {text:"Supreme Commander of Allied forces on D-Day?",options:["Patton","Montgomery","Eisenhower","MacArthur"],answer:2,explanation:"Eisenhower commanded all Allied forces."},
+  {text:"How many main beaches were assaulted?",options:["3","4","5","7"],answer:2,explanation:"Five: Utah, Omaha, Gold, Juno, and Sword."},
+  {text:"Which beach had the heaviest American casualties?",options:["Utah","Omaha","Gold","Sword"],answer:1,explanation:"Omaha Beach had fiercest resistance."},
+  {text:"Which countries assaulted Gold, Juno, Sword?",options:["All American","British and Canadian","French and Polish","Soviet"],answer:1,explanation:"Gold/Sword were British, Juno was Canadian."},
+  {text:"What did paratroopers do before beach landings?",options:["Bombed bridges","Dropped behind lines overnight","Landed by submarine","Attacked from south"],answer:1,explanation:"Airborne dropped behind German lines before dawn."},
+  {text:"Which US airborne divisions jumped into Normandy?",options:["82nd and 101st","1st and 2nd","10th and 11th","75th and 80th"],answer:0,explanation:"82nd and 101st Airborne Divisions."},
+  {text:"What was the Atlantic Wall?",options:["US naval fleet","German coastal fortifications","British spy network","Bombing campaign"],answer:1,explanation:"Germany's extensive coastal defense system."},
+  {text:"Who commanded German forces in Normandy?",options:["Hitler","Field Marshal Rommel","Guderian","Dönitz"],answer:1,explanation:"Rommel oversaw Atlantic Wall defenses."},
+  {text:"About how many Allied troops landed on D-Day?",options:["50,000","100,000","156,000","300,000"],answer:2,explanation:"Approximately 156,000 troops landed June 6."},
+  {text:"What does the D in D-Day stand for?",options:["Doom","Deliverance","Day (military term)","Democracy"],answer:2,explanation:"D-Day is military shorthand where D means 'Day.'"},
+];
+const Q_BULGE = [
+  {text:"When did the Battle of the Bulge begin?",options:["June 1944","October 1944","December 16, 1944","January 1945"],answer:2,explanation:"Germany's surprise offensive began Dec 16, 1944."},
+  {text:"Why 'Battle of the Bulge'?",options:["Soldiers gained weight","German advance created a bulge in lines","Hilly terrain","Allied troops swelled"],answer:1,explanation:"The advance pushed a 'bulge' into Allied front lines."},
+  {text:"German code name for this offensive?",options:["Nordwind","Spring Awakening","Watch on the Rhine","Fall Gelb"],answer:2,explanation:"Wacht am Rhein (Watch on the Rhine)."},
+  {text:"Which forest did Germans attack through?",options:["Black Forest","Hürtgen","Ardennes","Bavarian"],answer:2,explanation:"Through the Ardennes, considered lightly defended."},
+  {text:"Which town became famous for its defense?",options:["Paris","Bastogne","Antwerp","Aachen"],answer:1,explanation:"101st Airborne's defense of Bastogne was legendary."},
+  {text:"General McAuliffe's reply when asked to surrender?",options:["Never!","Come get us","Nuts!","No thanks"],answer:2,explanation:"'Nuts!' became one of the war's most famous quotes."},
+  {text:"What weather initially helped the Germans?",options:["Heavy rain","Dense fog/overcast","Extreme heat","Flooding"],answer:1,explanation:"Overcast skies grounded Allied air support."},
+  {text:"Which general's army relieved Bastogne?",options:["Eisenhower","Bradley","Patton","Montgomery"],answer:2,explanation:"Patton's Third Army made a remarkable turn to relieve Bastogne."},
+  {text:"About how many American casualties occurred?",options:["19,000","47,000","80,000","120,000"],answer:2,explanation:"About 80,000 — costliest US battle in WWII."},
+];
+const Q_IWOJIMA = [
+  {text:"Where is Iwo Jima located?",options:["Philippines","Pacific, south of Japan","Mediterranean","English Channel"],answer:1,explanation:"About 750 miles south of Tokyo."},
+  {text:"Why did the US want Iwo Jima?",options:["Oil","Airfield for bombing Japan","Naval port","Prisoner rescue"],answer:1,explanation:"Airfields to support B-29 bombing runs on mainland Japan."},
+  {text:"Famous photograph taken on Iwo Jima?",options:["V-J Day kiss","Flag on Mt. Suribachi","MacArthur's return","Eisenhower with paratroopers"],answer:1,explanation:"Iconic flag-raising on Mount Suribachi, Feb 23, 1945."},
+  {text:"What made Iwo Jima so hard to attack?",options:["Dense jungle","Tunnel and bunker system","Swamp terrain","Naval mines"],answer:1,explanation:"11 miles of tunnels and hundreds of hidden bunkers."},
+  {text:"Japanese commander on Iwo Jima?",options:["Yamamoto","Tojo","Kuribayashi","Nagumo"],answer:2,explanation:"General Kuribayashi designed the island's defense."},
+  {text:"How long did the battle last?",options:["3 days","2 weeks","About 36 days","3 months"],answer:2,explanation:"Feb 19 to Mar 26, 1945 — 36 days."},
+  {text:"Volcanic feature dominating the island?",options:["Mount Fuji","Mount Suribachi","Diamond Head","Mount Olympus"],answer:1,explanation:"546-foot dormant volcano at the island's south tip."},
+  {text:"How many US Marines killed on Iwo Jima?",options:["~2,000","~7,000","~15,000","~25,000"],answer:1,explanation:"About 6,800 killed and 19,000 wounded."},
+];
+
+const WW2_BATTLES = [
+  {id:"dday",name:"D-Day: Normandy",date:"Jun 1944",general:"FM Rommel",icon:"🏖️",questions:Q_DDAY,context:"The largest amphibious invasion in history. Allied forces stormed five Normandy beaches, beginning the liberation of Western Europe.",enemies:[{name:"Beach Defenders",hp:80,dmg:18,icon:"🔴"},{name:"Wehrmacht Infantry",hp:85,dmg:20,icon:"🟠"},{name:"Atlantic Wall HQ",hp:95,dmg:24,icon:"⭐"}]},
+  {id:"bulge",name:"Battle of the Bulge",date:"Dec 1944",general:"German Command",icon:"❄️",questions:Q_BULGE,context:"Germany's last major offensive. A surprise Ardennes attack created a 'bulge' in Allied lines. Bastogne's defense and Patton's relief became legendary.",enemies:[{name:"Panzer Division",hp:95,dmg:22,icon:"🔴"},{name:"Volksgrenadiers",hp:90,dmg:24,icon:"🟠"},{name:"King Tigers",hp:110,dmg:28,icon:"⭐"}]},
+  {id:"iwojima",name:"Iwo Jima",date:"Feb 1945",general:"Gen. Kuribayashi",icon:"🏔️",boss:true,bossReviewDmg:12,questions:Q_IWOJIMA,context:"One of the bloodiest Pacific battles. Marines fought 36 days through miles of tunnels to capture vital airfields.",enemies:[{name:"Tunnel Defenders",hp:120,dmg:24,icon:"🔴"},{name:"Imperial Marines",hp:110,dmg:26,icon:"🟠"},{name:"Gen. Kuribayashi",hp:140,dmg:30,icon:"👑"}]},
+];
+const WW2_MAP = [
+  {id:"berlin",name:"Fall of Berlin",date:"Apr 1945",general:"Soviet Forces",boss:"FINAL BOSS",icon:"🏛️"},
+  {id:"rhine",name:"Crossing the Rhine",date:"Mar 1945",general:"Various",icon:"🌉"},
+  {id:"iwojima",name:"Iwo Jima",date:"Feb 1945",general:"Kuribayashi",boss:"BOSS",icon:"🏔️"},
+  {id:"bulge",name:"Battle of the Bulge",date:"Dec 1944",general:"German HQ",icon:"❄️"},
+  {id:"dday",name:"D-Day",date:"Jun 1944",general:"Rommel",icon:"🏖️"},
+];
+
 // ═════════════════════════════════════════════════════════════════════════════
 // CHIBI SVGs (compact)
 // ═════════════════════════════════════════════════════════════════════════════
@@ -192,6 +242,18 @@ function BritishSprite({state="idle",size=140}){
   return <img src={src} alt={`British ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function PlayerChar({state,size,isColonial=true}){return isColonial?<ColonialSprite state={state} size={size}/>:<ChibiColonial state={state} size={size}/>;}
+function GISprite({state="idle",size=140}){
+  const src=`/sprites/gi-${state}.png`;
+  return <img src={src} alt={`GI ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite"}} onError={e=>{e.target.style.display="none";}}/>;
+}
+function GermanSprite({state="idle",size=140}){
+  const src=`/sprites/german-${state}.png`;
+  return <img src={src} alt={`German ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
+}
+// Universal sprite picker based on era
+function EraPlayerSprite({era,state,size}){return era==="ww2"?<GISprite state={state} size={size}/>:<ColonialSprite state={state} size={size}/>;}
+function EraEnemySprite({era,state,size}){return era==="ww2"?<GermanSprite state={state} size={size}/>:<BritishSprite state={state} size={size}/>;}
+
 
 // ═════════════════════════════════════════════════════════════════════════════
 // 3v3 GAME REDUCER
@@ -323,11 +385,11 @@ function UnitSelectScreen({battle,unlockedUnits,coins,onUnlock,onGo,onBack}){
 }
 
 function HomeScreen({onNav,coins,userName,onLogout}){return(<div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",minHeight:"80vh",gap:24,padding:20}}><div style={{fontFamily:fonts.heading,fontSize:"2.2rem",fontWeight:700,color:"#FFD700",textAlign:"center"}}>HISTORY LEGENDS</div><div style={{fontFamily:fonts.body,color:"#9E9E9E"}}>Welcome, <span style={{color:"#4FC3F7"}}>{userName}</span></div><div style={{background:"rgba(255,215,0,0.08)",border:"1px solid rgba(255,215,0,0.2)",borderRadius:10,padding:"10px 24px",display:"flex",alignItems:"center",gap:10}}><span style={{fontSize:"1.2rem"}}>🪙</span><span style={{fontFamily:fonts.mono,fontSize:"1.3rem",color:"#FFD700",fontWeight:700}}>{coins}</span></div><div style={{width:"100%",maxWidth:380,display:"flex",flexDirection:"column",gap:10}}><MC onClick={()=>onNav(SCREENS.US_HISTORY)}><span style={{fontSize:"1.5rem"}}>🇺🇸</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",fontWeight:700,color:"#4FC3F7"}}>US HISTORY</div><div style={{fontFamily:fonts.body,fontSize:"0.8rem",color:"#888",marginTop:2}}>Revolutionary War</div></div></MC><MC disabled accent="#666"><span style={{fontSize:"1.5rem"}}>🏰</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",color:"#666"}}>EUROPEAN — Coming soon</div></div></MC></div><button onClick={onLogout} style={{background:"none",border:"none",fontFamily:fonts.body,fontSize:"0.8rem",color:"#666",cursor:"pointer",padding:8,marginTop:8}}>Sign Out</button></div>);}
-function USScreen({onNav,onBack}){return(<div style={{padding:20,animation:"fadeIn 0.4s ease-out"}}><BB onClick={onBack}/><div style={{textAlign:"center",marginBottom:24}}><div style={{fontFamily:fonts.heading,fontSize:"1.5rem",fontWeight:700,color:"#E0E0E0"}}>US History</div></div><div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:400,margin:"0 auto"}}><MC onClick={()=>onNav(SCREENS.REV_WAR)}><span style={{fontSize:"1.4rem"}}>⚔️</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",fontWeight:700,color:"#4FC3F7"}}>REVOLUTIONARY WAR</div><div style={{fontFamily:fonts.body,fontSize:"0.8rem",color:"#888",marginTop:2}}>1775–1783 · 11 Battles</div></div></MC><MC disabled><span style={{fontSize:"1.4rem"}}>🦅</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",color:"#666"}}>CIVIL WAR — Coming soon</div></div></MC></div></div>);}
+function USScreen({onNav,onBack}){return(<div style={{padding:20,animation:"fadeIn 0.4s ease-out"}}><BB onClick={onBack}/><div style={{textAlign:"center",marginBottom:24}}><div style={{fontFamily:fonts.heading,fontSize:"1.5rem",fontWeight:700,color:"#E0E0E0"}}>US History</div></div><div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:400,margin:"0 auto"}}><MC onClick={()=>onNav(SCREENS.REV_WAR)}><span style={{fontSize:"1.4rem"}}>⚔️</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",fontWeight:700,color:"#4FC3F7"}}>REVOLUTIONARY WAR</div><div style={{fontFamily:fonts.body,fontSize:"0.8rem",color:"#888",marginTop:2}}>1775–1783 · 11 Battles</div></div></MC><MC onClick={()=>onNav(SCREENS.WW2)}><span style={{fontSize:"1.4rem"}}>🪖</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",fontWeight:700,color:"#81C784"}}>WORLD WAR II</div><div style={{fontFamily:fonts.body,fontSize:"0.8rem",color:"#888",marginTop:2}}>1941–1945 · 3 Battles</div></div></MC><MC disabled><span style={{fontSize:"1.4rem"}}>🦅</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.85rem",color:"#666"}}>CIVIL WAR — Coming soon</div></div></MC></div></div>);}
 
-function MapScreen({onBack,onSelect,completed}){const sR=useRef(null);useEffect(()=>{if(sR.current)sR.current.scrollTop=sR.current.scrollHeight;},[]);const m=REV_WAR_MAP,ns=110,mh=m.length*ns+120,pw=320;const gX=i=>{const c=(m.length-1-i)%6;return[0.5,0.28,0.5,0.72,0.5,0.35][c];};const pts=m.map((_,i)=>({x:gX(i)*pw,y:60+i*ns}));const pD=pts.reduce((a,p,i)=>{if(i===0)return`M ${p.x} ${p.y}`;const pr=pts[i-1];const cy=(pr.y+p.y)/2;return`${a} C ${pr.x} ${cy}, ${p.x} ${cy}, ${p.x} ${p.y}`;},"");
-  return(<div style={{height:"100vh",display:"flex",flexDirection:"column",animation:"fadeIn 0.4s ease-out"}}><div style={{padding:"12px 20px 8px",flexShrink:0}}><BB onClick={onBack}/><div style={{textAlign:"center"}}><div style={{fontFamily:fonts.heading,fontSize:"1.2rem",fontWeight:700,color:"#E0E0E0"}}>Revolutionary War</div></div></div><div ref={sR} style={{flex:1,overflowY:"auto",overflowX:"hidden"}}><div style={{position:"relative",width:"100%",maxWidth:pw,margin:"0 auto",height:mh}}><svg style={{position:"absolute",top:0,left:0,width:pw,height:mh,pointerEvents:"none"}} viewBox={`0 0 ${pw} ${mh}`}><path d={pD} fill="none" stroke="rgba(79,195,247,0.08)" strokeWidth="28" strokeLinecap="round"/><path d={pD} fill="none" stroke="rgba(79,195,247,0.15)" strokeWidth="4" strokeLinecap="round" strokeDasharray="8 6"/></svg><div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",fontFamily:fonts.heading,fontSize:"0.6rem",letterSpacing:"0.2em",color:"#FFD700",opacity:0.5}}>🏆 Independence 🏆</div><div style={{position:"absolute",bottom:15,left:"50%",transform:"translateX(-50%)",fontFamily:fonts.heading,fontSize:"0.55rem",letterSpacing:"0.2em",color:"#4FC3F7"}}>▼ Start ▼</div>
-    {m.map((b,i)=>{const pt=pts[i];const bc=BATTLES.find(x=>x.id===b.id);const ic=completed.includes(b.id);const bi=BATTLES.findIndex(x=>x.id===b.id);const av=bi===0||(bi>0&&completed.includes(BATTLES[bi-1].id));const iB=!!b.boss;const iF=b.boss==="FINAL BOSS";const sz=iF?56:iB?48:38;const nc=ic?"#81C784":av?"#4FC3F7":iF?"#FFD700":iB?"#FF8A65":"#444";
+function MapScreen({onBack,onSelect,completed,mapData,battles,title}){const sR=useRef(null);useEffect(()=>{if(sR.current)sR.current.scrollTop=sR.current.scrollHeight;},[]);const m=mapData,ns=110,mh=m.length*ns+120,pw=320;const gX=i=>{const c=(m.length-1-i)%6;return[0.5,0.28,0.5,0.72,0.5,0.35][c];};const pts=m.map((_,i)=>({x:gX(i)*pw,y:60+i*ns}));const pD=pts.reduce((a,p,i)=>{if(i===0)return`M ${p.x} ${p.y}`;const pr=pts[i-1];const cy=(pr.y+p.y)/2;return`${a} C ${pr.x} ${cy}, ${p.x} ${cy}, ${p.x} ${p.y}`;},"");
+  return(<div style={{height:"100vh",display:"flex",flexDirection:"column",animation:"fadeIn 0.4s ease-out"}}><div style={{padding:"12px 20px 8px",flexShrink:0}}><BB onClick={onBack}/><div style={{textAlign:"center"}}><div style={{fontFamily:fonts.heading,fontSize:"1.2rem",fontWeight:700,color:"#E0E0E0"}}>{title}</div></div></div><div ref={sR} style={{flex:1,overflowY:"auto",overflowX:"hidden"}}><div style={{position:"relative",width:"100%",maxWidth:pw,margin:"0 auto",height:mh}}><svg style={{position:"absolute",top:0,left:0,width:pw,height:mh,pointerEvents:"none"}} viewBox={`0 0 ${pw} ${mh}`}><path d={pD} fill="none" stroke="rgba(79,195,247,0.08)" strokeWidth="28" strokeLinecap="round"/><path d={pD} fill="none" stroke="rgba(79,195,247,0.15)" strokeWidth="4" strokeLinecap="round" strokeDasharray="8 6"/></svg><div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",fontFamily:fonts.heading,fontSize:"0.6rem",letterSpacing:"0.2em",color:"#FFD700",opacity:0.5}}>🏆 Victory 🏆</div><div style={{position:"absolute",bottom:15,left:"50%",transform:"translateX(-50%)",fontFamily:fonts.heading,fontSize:"0.55rem",letterSpacing:"0.2em",color:"#4FC3F7"}}>▼ Start ▼</div>
+    {m.map((b,i)=>{const pt=pts[i];const bc=battles.find(x=>x.id===b.id);const ic=completed.includes(b.id);const bi=battles.findIndex(x=>x.id===b.id);const av=bi===0||(bi>0&&completed.includes(battles[bi-1].id));const iB=!!b.boss;const iF=b.boss==="FINAL BOSS";const sz=iF?56:iB?48:38;const nc=ic?"#81C784":av?"#4FC3F7":iF?"#FFD700":iB?"#FF8A65":"#444";
       return(<div key={b.id+i} style={{position:"absolute",top:pt.y-sz/2,left:pt.x,transform:"translateX(-50%)",display:"flex",flexDirection:"column",alignItems:"center",cursor:(av||ic)&&bc?"pointer":"default",zIndex:av?3:1}} onClick={()=>(av||ic)&&bc&&onSelect(bc)}>
         {iB&&<div style={{fontFamily:fonts.heading,fontSize:"0.42rem",letterSpacing:"0.12em",color:iF?"#FFD700":"#FF8A65",textTransform:"uppercase",marginBottom:2}}>{b.boss}</div>}
         <div style={{width:sz,height:sz,borderRadius:"50%",background:ic?"rgba(129,199,132,0.15)":av?"rgba(79,195,247,0.15)":"rgba(255,255,255,0.02)",border:`2px solid ${ic?"rgba(129,199,132,0.5)":av?nc+"88":nc+"33"}`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative"}}>{av&&!ic&&<div style={{position:"absolute",inset:-4,borderRadius:"50%",border:"2px solid rgba(79,195,247,0.3)",animation:"pulse 2s infinite"}}/>}<span style={{fontSize:iF?"1.2rem":iB?"1rem":"0.85rem"}}>{ic?"✅":av?b.icon:"🔒"}</span></div>
@@ -364,6 +426,7 @@ export default function HistoryLegends(){
   const[unlockedUnits,setUU]=useState(["infantry"]);
   const[curBattle,setCB]=useState(BATTLES[0]);
   const[curSquad,setCS]=useState([]);
+  const[curEra,setEra]=useState("revwar");
   const[dLoaded,setDL]=useState(false);
   const eR=useRef(0);const sT=useRef(null);
 
@@ -387,10 +450,10 @@ export default function HistoryLegends(){
 
   const startBattle=(battle,squad)=>{
     let rv=null;
-    if(battle.boss){const wQ=wrongAll.filter(q=>q&&!battle.questions.find(b=>b.text===q.text));const pB=BATTLES.filter(b=>b.id!==battle.id&&!b.boss);const pQs=pB.flatMap(b=>b.questions);const nW=pQs.filter(q=>!wQ.find(w=>w.text===q.text));rv=[...wQ,...shuffleArray(nW).slice(0,Math.max(0,6-wQ.length))].slice(0,8);}
+    if(battle.boss){const allB=curEra==="ww2"?WW2_BATTLES:BATTLES;const wQ=wrongAll.filter(q=>q&&!battle.questions.find(b=>b.text===q.text));const pB=allB.filter(b=>b.id!==battle.id&&!b.boss);const pQs=pB.flatMap(b=>b.questions);const nW=pQs.filter(q=>!wQ.find(w=>w.text===q.text));rv=[...wQ,...shuffleArray(nW).slice(0,Math.max(0,6-wQ.length))].slice(0,8);}
     setCS(squad);dispatch({type:"START",battle,squad,playerStats:pStats,reviewQs:rv});setScreen(SCREENS.BATTLE);
   };
-  const goMap=()=>setScreen(SCREENS.REV_WAR);
+  const goMap=()=>setScreen(curEra==="ww2"?SCREENS.WW2:SCREENS.REV_WAR);
   const goMenu=()=>setScreen(SCREENS.HOME);
   const logout=async()=>{await signOut(auth);setCoins(0);setUpgrades({maxHP:0,baseDmg:0,critRate:0});setCompleted([]);setWA([]);setUU(["infantry"]);};
   const buyUpg=k=>{const u=UPGRADES[k],lv=upgrades[k];if(lv>=u.levels.length-1)return;const c=u.costs[lv+1];if(coins<c)return;setCoins(v=>v-c);setUpgrades(v=>({...v,[k]:v[k]+1}));};
@@ -414,7 +477,8 @@ export default function HistoryLegends(){
         <div style={{flex:1}}>
           {screen===SCREENS.HOME&&<HomeScreen onNav={setScreen} coins={coins} userName={user.displayName||"Commander"} onLogout={logout}/>}
           {screen===SCREENS.US_HISTORY&&<USScreen onNav={setScreen} onBack={()=>setScreen(SCREENS.HOME)}/>}
-          {screen===SCREENS.REV_WAR&&<MapScreen onBack={()=>setScreen(SCREENS.US_HISTORY)} onSelect={b=>{setCB(b);setScreen(SCREENS.PRE_BATTLE);}} completed={completed}/>}
+          {screen===SCREENS.REV_WAR&&<MapScreen onBack={()=>setScreen(SCREENS.US_HISTORY)} onSelect={b=>{setCB(b);setEra("revwar");setScreen(SCREENS.PRE_BATTLE);}} completed={completed} mapData={REV_WAR_MAP} battles={BATTLES} title="Revolutionary War"/>}
+          {screen===SCREENS.WW2&&<MapScreen onBack={()=>setScreen(SCREENS.US_HISTORY)} onSelect={b=>{setCB(b);setEra("ww2");setScreen(SCREENS.PRE_BATTLE);}} completed={completed} mapData={WW2_MAP} battles={WW2_BATTLES} title="World War II"/>}
           {screen===SCREENS.SHOP&&<ShopScreen onBack={()=>setScreen(SCREENS.HOME)} coins={coins} upgrades={upgrades} onBuy={buyUpg}/>}
           {screen===SCREENS.PRE_BATTLE&&<PreBattle battle={curBattle} onStart={()=>setScreen(SCREENS.UNIT_SELECT)} onBack={goMap}/>}
           {screen===SCREENS.UNIT_SELECT&&<UnitSelectScreen battle={curBattle} unlockedUnits={unlockedUnits} coins={coins} onUnlock={unlockU} onGo={sq=>startBattle(curBattle,sq)} onBack={()=>setScreen(SCREENS.PRE_BATTLE)}/>}
@@ -451,7 +515,7 @@ export default function HistoryLegends(){
                           <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:fonts.mono,fontSize:"0.38rem",color:"#fff",textShadow:"0 1px 2px rgba(0,0,0,0.8)",fontWeight:700}}>{u.fallen?"☠":u.hp}</div>
                         </div>
                       </div>
-                      <div style={{filter:isActive?"drop-shadow(2px 3px 5px rgba(0,0,0,0.4))":"drop-shadow(1px 2px 3px rgba(0,0,0,0.3))"}}><PlayerChar state={u.fallen?"critical":uState} size={sz}/></div>
+                      <div style={{filter:isActive?"drop-shadow(2px 3px 5px rgba(0,0,0,0.4))":"drop-shadow(1px 2px 3px rgba(0,0,0,0.3))"}}><EraPlayerSprite era={curEra} state={u.fallen?"critical":uState} size={sz}/></div>
                       {u.fallen&&<div style={{position:"absolute",top:"40%",fontSize:"1.2rem"}}>💀</div>}
                     </div>);
                   })}
@@ -471,7 +535,7 @@ export default function HistoryLegends(){
                           <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:fonts.mono,fontSize:"0.38rem",color:"#fff",textShadow:"0 1px 2px rgba(0,0,0,0.8)",fontWeight:700}}>{u.fallen?"☠":u.hp}</div>
                         </div>
                       </div>
-                      <div style={{filter:isActive?"drop-shadow(2px 3px 5px rgba(0,0,0,0.4))":"drop-shadow(1px 2px 3px rgba(0,0,0,0.3))",transform:"scaleX(-1)"}}><BritishSprite state={u.fallen?"critical":uState} size={sz}/></div>
+                      <div style={{filter:isActive?"drop-shadow(2px 3px 5px rgba(0,0,0,0.4))":"drop-shadow(1px 2px 3px rgba(0,0,0,0.3))",transform:"scaleX(-1)"}}><EraEnemySprite era={curEra} state={u.fallen?"critical":uState} size={sz}/></div>
                       {u.fallen&&<div style={{position:"absolute",top:"40%",fontSize:"1.2rem"}}>💀</div>}
                     </div>);
                   })}
