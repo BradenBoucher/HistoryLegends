@@ -352,7 +352,7 @@ const Q_BROWN=[
   {text:"How did Brown help inspire later civil rights activism?",options:["It didn't inspire anyone","It proved legal victories were possible and energized the movement","It ended the need for activism","It discouraged further action"],answer:1,explanation:"Brown showed the legal system could be used as a tool for change, inspiring further action."},
   {text:"Compare litigation (Brown) to mass protest (boycotts). What can courts do that protests can't?",options:["Nothing different","Courts can establish binding legal precedent that applies everywhere","Courts are faster at changing attitudes","Protests are always more effective"],answer:1,explanation:"Court rulings create enforceable law; protests create pressure but not legal mandates."},
   {text:"Is Brown best understood as a turning point or a final victory?",options:["Final victory — it solved everything","A turning point — it changed the legal landscape but much work remained","Neither — it had no impact","A setback for civil rights"],answer:1,explanation:"Brown opened doors but didn't walk through them — implementation required years of struggle."},
-];
+,{text:"What is the correct order of Brown v. Board events?",options:["Schools segregated then Court rules then case filed","Schools segregated then case reaches Court then ruling then legal foundation weakened","Case filed then schools segregated then weakened","Court rules then schools segregated then case filed"],answer:1,explanation:"Segregated schools existed, case was brought, Court ruled, and the legal basis for segregation crumbled."},{text:"Which was NOT a cause of the Brown decision?",options:["NAACP legal challenges","Cold War image concerns","Desire to end school sports","Growing civil rights activism"],answer:2,explanation:"School sports had nothing to do with Brown."}];
 
 const Q_MONTGOMERY=[
   {text:"What event helped spark the Montgomery Bus Boycott?",options:["A court ruling","Rosa Parks' arrest for refusing to give up her bus seat","A presidential speech","A newspaper article"],answer:1,explanation:"Parks' arrest on December 1, 1955 catalyzed organized mass protest."},
@@ -364,7 +364,7 @@ const Q_MONTGOMERY=[
   {text:"How did the boycott demonstrate the power of nonviolent resistance?",options:["It didn't use nonviolence","Sustained peaceful pressure achieved change without violence, proving the strategy viable","Violence was the main tactic","The boycott failed"],answer:1,explanation:"381 days of disciplined nonviolent protest proved the approach could work at scale."},
   {text:"Why did this local protest become nationally significant?",options:["It didn't get attention","Media coverage spread the story nationwide, making it a model for future movements","It was the only protest ever","The president organized it"],answer:1,explanation:"Montgomery showed other communities that organized nonviolent action could succeed."},
   {text:"How long did the Montgomery Bus Boycott last?",options:["One week","One month","About 381 days","Five years"],answer:2,explanation:"Over a year of sustained boycott — an extraordinary feat of organization and endurance."},
-];
+,{text:"What is the correct sequence of the Montgomery Bus Boycott?",options:["Boycott then Parks arrested then Court ruling","Parks arrested then boycott then economic pressure then Court ends bus segregation","Economic pressure then Parks then boycott","Court ruling then Parks then boycott"],answer:1,explanation:"Parks arrest triggered the boycott, which created economic pressure, leading to the court ruling."},{text:"Rosa Parks' arrest was a ___ of the boycott; financial losses were a ___.",options:["Effect then Cause","Cause then Effect","Neither then Both","Both then Neither"],answer:1,explanation:"The arrest caused the boycott; financial losses were the effect."}];
 
 const Q_MARCHDC=[
   {text:"What were the two major goals of the March on Washington?",options:["War and peace","Jobs and Freedom","Education and healthcare","Trade and immigration"],answer:1,explanation:"The full name was the 'March on Washington for Jobs and Freedom' — linking economic and civil rights."},
@@ -376,7 +376,7 @@ const Q_MARCHDC=[
   {text:"Why are coalitions important in large reform movements?",options:["They aren't","Broad coalitions provide resources, legitimacy, and show the issue crosses group boundaries","Only one group should lead","Coalitions weaken movements"],answer:1,explanation:"Labor unions, religious groups, and civil rights organizations all contributed."},
   {text:"How did the march help build momentum for the Civil Rights Act?",options:["It didn't","It demonstrated overwhelming public support and put direct pressure on Congress and the President","Congress had already passed the act","The march opposed the act"],answer:1,explanation:"The march showed Kennedy and Congress that the public demanded action."},
   {text:"Is the March best remembered for a single speech or the broader movement?",options:["Only the speech mattered","While King's speech is iconic, the march represented a massive organized coalition demanding systemic change","The speech was unimportant","Nobody remembers the march"],answer:1,explanation:"The speech is memorable, but the march's significance was the organized political pressure it represented."},
-];
+,{text:"What order did the March on Washington's impact follow?",options:["Media then Protest then Support then Pressure","Protest then Media coverage then Public support then Government pressure","Government then Protest then Support","Support then Media then Protest"],answer:1,explanation:"March happened, media covered it, support grew, political pressure followed."},{text:"Which factor did NOT make the March effective?",options:["Peaceful demonstration","Large crowd of 250,000","Use of violence","Symbolic Lincoln Memorial location"],answer:2,explanation:"The march was deliberately nonviolent."}];
 
 const Q_CRA64=[
   {text:"What did the Civil Rights Act of 1964 prohibit?",options:["Only school segregation","Discrimination in public accommodations, employment, and federally funded programs","Only voting restrictions","Only housing discrimination"],answer:1,explanation:"The act was sweeping — covering restaurants, hotels, workplaces, and any program receiving federal money."},
@@ -387,7 +387,7 @@ const Q_CRA64=[
   {text:"Why did some opponents frame resistance as 'states' rights'?",options:["It was a new argument","'States' rights' had been used since the Constitution to resist federal power — especially regarding race","The argument was invented in 1964","States actually had the right to discriminate"],answer:1,explanation:"The same framing used to defend slavery and Jim Crow was recycled against civil rights legislation."},
   {text:"How did grassroots activism make this law possible?",options:["Activism was irrelevant","Years of boycotts, marches, sit-ins, and media coverage created the political pressure Congress needed to act","Congress acted independently","Only the president mattered"],answer:1,explanation:"Without the movement's sustained pressure, Congress would not have acted."},
   {text:"Is the Civil Rights Act best understood as an ending or a beginning?",options:["The final victory","A crucial milestone, but enforcement, backlash, and remaining inequalities meant the struggle continued","It had no impact","It made things worse"],answer:1,explanation:"The act was transformative but didn't end discrimination — it gave tools to fight it."},
-];
+,{text:"What is the correct path to the Civil Rights Act of 1964?",options:["Act passed then Protests then Awareness","Protests increase then Awareness grows then Pressure builds then Act passed","Pressure then Protests then Act","Awareness then Act then Protests"],answer:1,explanation:"Grassroots activism created awareness, which built pressure, leading to legislation."}];
 
 const Q_SELMA=[
   {text:"What core problem were Selma activists trying to address?",options:["School segregation","Systematic obstruction of Black voting rights","Employment discrimination","Housing inequality"],answer:1,explanation:"Despite the 15th Amendment, Southern states used literacy tests, poll taxes, and intimidation to block Black voters."},
@@ -398,7 +398,7 @@ const Q_SELMA=[
   {text:"What landmark legislation did the Selma marches help produce?",options:["Civil Rights Act of 1964","Voting Rights Act of 1965","Brown v. Board","The 13th Amendment"],answer:1,explanation:"The Voting Rights Act gave federal power to enforce voting rights and ban discriminatory practices."},
   {text:"How did local activism connect to federal action at Selma?",options:["They were unconnected","Local courage created national attention which created political pressure for federal legislation","Federal action came first","Local activism was irrelevant"],answer:1,explanation:"The chain: local action → media coverage → national outrage → federal legislation."},
   {text:"Why is Selma remembered as a watershed moment?",options:["Nothing changed","It directly led to the Voting Rights Act — converting a constitutional right into enforceable access","It was a minor event","Only historians remember it"],answer:1,explanation:"Selma turned the promise of the 15th Amendment into practical reality through federal enforcement."},
-];
+,{text:"Put Selma's events in correct order:",options:["Marches then Suppression then Violence then Act","Voter suppression then Marches then Bloody Sunday then National outrage then Voting Rights Act","Violence then Marches then Outrage then Act","Outrage then Violence then Marches"],answer:1,explanation:"Suppression existed, marches organized, violence at bridge, outrage, then federal legislation."}];
 
 
 const Q_LUSITANIA=[
@@ -410,7 +410,7 @@ const Q_LUSITANIA=[
   {text:"How did the Lusitania affect American public opinion?",options:["No effect","It shifted opinion against Germany and made intervention more politically acceptable","Americans supported Germany","Nobody heard about it"],answer:1,explanation:"The deaths of 128 Americans on a civilian ship made neutrality harder to defend."},
   {text:"Compare the Lusitania's impact to Pearl Harbor's. What's similar?",options:["Nothing","Both were shock events that shifted American willingness to go to war","Both happened in 1941","Both were submarine attacks"],answer:1,explanation:"Both transformed public opinion from reluctance to determination through dramatic loss of life."},
   {text:"Was submarine warfare the MOST important cause of U.S. entry into WWI?",options:["Yes — the only cause","It was the most immediate trigger, but economic ties and ideology also mattered","It was completely irrelevant","The U.S. never entered WWI"],answer:1,explanation:"Submarine warfare was the proximate cause, but deeper economic and ideological factors set the stage."},
-];
+,{text:"Put WWI escalation in correct order:",options:["Lusitania then Submarines then Anger then Entry","Submarine warfare then Lusitania sunk then American anger then Pressure to enter","Entry then Anger then Submarines","Submarines then Entry then Lusitania"],answer:1,explanation:"Submarine warfare, Lusitania sinking, public outrage, war entry pressure."},{text:"Which actually pulled the U.S. AWAY from WWI?",options:["Submarine attacks","Economic ties to Allies","Isolationist sentiment","Public outrage over deaths"],answer:2,explanation:"Isolationism resisted war entry; the others pushed toward it."}];
 
 const Q_TRENCHES=[
   {text:"Why did armies on the Western Front dig trench systems after 1914?",options:["For recreation","Machine guns and artillery made open movement suicidal — trenches provided protection","Generals preferred underground","It was traditional"],answer:1,explanation:"Industrial weapons made the battlefield lethal — digging in was the only way to survive."},
@@ -444,7 +444,7 @@ const Q_CUBAN=[
   {text:"Why is intelligence (like U-2 reconnaissance photos) central to this crisis?",options:["Intelligence was irrelevant","Photographic proof of missile sites triggered the crisis and shaped decision-making throughout","The U.S. already knew everything","Photos were faked"],answer:1,explanation:"Without U-2 photos, the U.S. might not have discovered the missiles until they were operational."},
   {text:"Compare the Cuban Missile Crisis to another U.S.-Soviet standoff. What pattern appears?",options:["No pattern exists","Both superpowers used brinkmanship but ultimately stepped back from mutual destruction","The U.S. always won","The Soviets always backed down"],answer:1,explanation:"The pattern of escalation followed by negotiated de-escalation defined Cold War crisis management."},
   {text:"Was the crisis's main significance military, diplomatic, or psychological?",options:["Only military","All three — it changed military posture, diplomatic communication, and global psychology about nuclear war","Only psychological","It had no significance"],answer:1,explanation:"The crisis transformed how nuclear powers managed competition."},
-];
+,{text:"Put the Cuban Missile Crisis in correct order:",options:["Blockade then Missiles then Discovery then Removal","Missiles placed then U.S. discovers them then Blockade then Standoff then Removed","Discovery then Placement then Removal","Standoff then Blockade then Discovery"],answer:1,explanation:"Placement, discovery, blockade, standoff, negotiated removal."}];
 
 const Q_TONKIN=[
   {text:"What did the Gulf of Tonkin Resolution authorize?",options:["Withdrawal from Vietnam","The president to take 'all necessary measures' in Southeast Asia — broad war-making authority","A formal declaration of war","Peace negotiations"],answer:1,explanation:"Congress gave LBJ essentially blank-check authority to escalate in Vietnam."},
@@ -455,7 +455,7 @@ const Q_TONKIN=[
   {text:"Why did Vietnam become a source of major domestic political conflict?",options:["It was universally supported","Rising casualties, the draft, media coverage, and questions about the war's purpose divided American society deeply","Only a few people opposed it","The war ended quickly"],answer:1,explanation:"Vietnam produced the most significant antiwar movement in American history."},
   {text:"Compare the Tonkin escalation to how the U.S. entered WWI or WWII.",options:["Identical processes","Each entry involved different triggers and levels of public support, but all show how incidents can accelerate pre-existing pressures","Wars always start the same way","The U.S. was always eager for war"],answer:1,explanation:"The pattern of incident → public reaction → authorization appears across multiple wars."},
   {text:"Did Tonkin matter more for reshaping war powers or for the Vietnam War itself?",options:["Only Vietnam","Both — it enabled Vietnam AND set a precedent for presidential war-making that persists today","Only war powers","Neither mattered"],answer:1,explanation:"Tonkin's legacy extends far beyond Vietnam into ongoing debates about executive power."},
-];
+,{text:"Put Vietnam escalation in correct order:",options:["Troops then Tonkin then Resolution then War","Tonkin incident then Resolution then Troop increase then War intensifies","Resolution then Tonkin then Troops","War then Troops then Tonkin"],answer:1,explanation:"Incident triggered resolution, which enabled troop increases, intensifying the war."}];
 
 
 const Q_TRAILOFTEARS=[
@@ -467,7 +467,7 @@ const Q_TRAILOFTEARS=[
   {text:"How did removal shape later federal Indian policy?",options:["It ended federal involvement","It established a pattern of coercive federal control over Native lands and peoples that continued for decades","Removal was the only policy ever used","Native nations regained all land"],answer:1,explanation:"Removal set the precedent for reservations, allotment, and assimilation policies."},
   {text:"How might a Cherokee account and a military report describe removal differently?",options:["They would be identical","Cherokee accounts emphasize suffering and injustice; military reports emphasize logistics and compliance","Only one perspective matters","Neither kept records"],answer:1,explanation:"Source analysis: purpose, audience, and experience shape how the same event is described."},
   {text:"How can 'westward expansion' be both opportunity and coercion?",options:["It was only opportunity","For settlers it meant land and opportunity; for Native peoples it meant dispossession, suffering, and death","It was only coercion","Neither applies"],answer:1,explanation:"The same process that created opportunity for some destroyed the lives and sovereignty of others."},
-];
+,{text:"Put the Trail of Tears in correct order:",options:["Harsh conditions then Act then March then Deaths","Indian Removal Act then Forced march then Harsh conditions then Thousands die","Deaths then March then Act","March then Deaths then Act"],answer:1,explanation:"Act passed, forced march, terrible conditions, mass death."}];
 
 const Q_HOMESTEAD=[
   {text:"What did the Homestead Act offer eligible settlers?",options:["Free houses","160 acres of public land if they lived on it and improved it for 5 years","Unlimited land","Government jobs"],answer:1,explanation:"160 acres — about a quarter square mile — with residency and improvement requirements."},
@@ -478,7 +478,7 @@ const Q_HOMESTEAD=[
   {text:"How did railroads and transportation affect homesteading?",options:["They were irrelevant","Railroads made remote land accessible and connected homesteaders to markets — essential for economic viability","Homesteaders didn't need roads","All land was equally accessible"],answer:1,explanation:"Without transportation, even free land was economically useless."},
   {text:"Compare the Homestead Act to another federal policy expanding access to opportunity.",options:["No comparison exists","Like the GI Bill later, government used policy to distribute economic opportunity — but both excluded some groups","All federal policies are identical","Federal policies never distribute opportunity"],answer:1,explanation:"The pattern of government-driven opportunity with unequal access recurs throughout U.S. history."},
   {text:"Was the Homestead Act's main significance economic opportunity or intensifying conflict?",options:["Only opportunity","Both — it created genuine opportunity for many while intensifying violent conflict over land already claimed by Native nations","Only conflict","Neither"],answer:1,explanation:"The act's dual nature — opportunity and dispossession — is central to understanding western expansion."},
-];
+,{text:"Which was NOT a result of the Homestead Act?",options:["Western settlement increased","Settlers received land","Industrial decline in the East","Native land loss accelerated"],answer:2,explanation:"The act did not cause eastern industrial decline."}];
 
 const Q_LITTLEBIGHORN=[
   {text:"Who fought at the Battle of the Little Bighorn (1876)?",options:["Union vs Confederacy","Lakota, Northern Cheyenne, and Arapaho forces vs the U.S. 7th Cavalry under Lt. Col. Custer","British vs Americans","Mexico vs the U.S."],answer:1,explanation:"A coalition of Native nations defeated Custer's force in present-day Montana."},
@@ -489,7 +489,7 @@ const Q_LITTLEBIGHORN=[
   {text:"How might an Army report differ from a Native oral history about the battle?",options:["They would agree completely","Army reports emphasize tactics and losses; oral histories center experience, resistance, and community meaning","Only one account matters","Neither source is useful"],answer:1,explanation:"Different purposes, audiences, and cultural frameworks produce fundamentally different narratives."},
   {text:"How did Little Bighorn affect U.S. federal policy?",options:["No effect","It intensified military campaigns and accelerated forced reservation confinement of Plains nations","The government withdrew from the Plains","Treaties were honored after"],answer:1,explanation:"The U.S. responded to defeat with escalation, not withdrawal."},
   {text:"Is Little Bighorn best understood as a battle, a policy outcome, or a cultural memory?",options:["Only a battle","All three — the military event, the policy context that caused it, and the contested memory all matter","Only cultural memory","It's been forgotten"],answer:1,explanation:"Understanding Little Bighorn requires all three lenses simultaneously."},
-];
+,{text:"Put Little Bighorn in correct order:",options:["Battle then Expansion then Conflict then Defeat","U.S. expansion then Conflict with Sioux and Cheyenne then Battle then Custer defeated","Defeat then Battle then Conflict","Conflict then Defeat then Expansion"],answer:1,explanation:"Expansion pressures, conflict escalated, battle occurred, Custer destroyed."}];
 
 const Q_DAWES=[
   {text:"What was the Dawes Act's central policy change?",options:["It created new reservations","It broke up communal tribal lands into individual allotments of 160 acres","It returned stolen land","It had no effect on land"],answer:1,explanation:"Allotment replaced collective tribal ownership with individual parcels — shattering the land base."},
@@ -500,7 +500,7 @@ const Q_DAWES=[
   {text:"How can you use the act's text differently from enrollment records?",options:["They're the same","The law reveals policy goals and assumptions; enrollment records reveal who was affected and how implementation worked in practice","Neither is useful","Only the law matters"],answer:1,explanation:"Different source types answer different questions — text for intent, records for impact."},
   {text:"Compare Dawes to another federal policy that reshaped property rights.",options:["No comparison exists","Like Reconstruction-era land policies or New Deal programs, federal power was used to redistribute resources — with winners and losers","All policies are identical","Property rights never changed"],answer:1,explanation:"The pattern of federal policy reshaping who owns what recurs across U.S. history."},
   {text:"Is the Dawes Act best understood as reform or coercion?",options:["Pure reform","Coercive reform — framed as 'helping' but designed to destroy tribal landholding and force cultural assimilation","Pure coercion with no reform language","Neither"],answer:1,explanation:"The gap between stated goals ('assimilation') and actual outcomes (land theft) defines the Dawes Act."},
-];
+,{text:"Which is a CAUSE of the Dawes Act, not an EFFECT?",options:["Land divided into plots","Loss of tribal identity","Desire to forcibly assimilate Native Americans","Surplus land opened to settlers"],answer:2,explanation:"The desire to assimilate CAUSED the act; the others were effects."}];
 
 const CR_BATTLES=[
   {id:"brown",name:"Brown v. Board",date:"1954",general:"Segregation",icon:"⚖️",questions:Q_BROWN,context:"The Supreme Court ruled segregated schools unconstitutional — a legal turning point, but not an immediate end to segregation.",enemies:[{name:"Legal Barriers",hp:70,dmg:14,icon:"🧱"},{name:"Segregation Laws",hp:75,dmg:16,icon:"📜"},{name:"Separate But Equal",hp:85,dmg:20,icon:"⚖️"}]},
@@ -577,9 +577,12 @@ function GermanSprite({state="idle",size=140}){
   const src=`/sprites/german-${state}.png`;
   return <img src={src} alt={`German ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
 }
-// Universal sprite picker based on era
+function ConfederateSprite({state="idle",size=140}){
+  const src=`/sprites/confederate-${state}.png`;
+  return <img src={src} alt={`Confederate ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
+}
 function EraPlayerSprite({era,state,size}){return era==="ww2"?<GISprite state={state} size={size}/>:<ColonialSprite state={state} size={size}/>;}
-function EraEnemySprite({era,state,size}){return era==="ww2"?<GermanSprite state={state} size={size}/>:era==="civilwar"?<BritishSprite state={state} size={size}/>:<BritishSprite state={state} size={size}/>;}
+function EraEnemySprite({era,state,size}){return era==="ww2"?<GermanSprite state={state} size={size}/>:era==="civilwar"?<ConfederateSprite state={state} size={size}/>:<BritishSprite state={state} size={size}/>;}
 
 
 // ═════════════════════════════════════════════════════════════════════════════
