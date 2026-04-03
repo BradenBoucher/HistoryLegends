@@ -883,7 +883,7 @@ export default function HistoryLegends(){
 
               {/* ═══ 3v3 BATTLEFIELD ═══ */}
               {(()=>{const pacificIds=["pearlharbor","midway","iwojima","okinawa"];const winterIds=["bulge"];const bgSrc=curEra==="ww2"?(pacificIds.includes(curBattle.id)?"/bg/ww2-pacific.jpg":winterIds.includes(curBattle.id)?"/bg/ww2-winter.jpg":"/bg/ww2-europe.jpg"):curEra==="civilwar"?"/bg/civilwar.jpg":curEra==="civilrights"?"/bg/civilrights.jpg":curEra==="ww1"?"/bg/ww1.jpg":curEra==="coldwar"?"/bg/coldwar.jpg":curEra==="westward"?"/bg/westward.jpg":"/bg/revwar.jpg";return(
-              <div style={{position:"relative",width:"100%",height:250,borderRadius:14,overflow:"hidden",marginBottom:8,flexShrink:0,border:"1px solid rgba(255,255,255,0.06)"}}>
+              <div style={{position:"relative",width:"100%",height:290,borderRadius:14,overflow:"hidden",marginBottom:8,flexShrink:0,border:"1px solid rgba(255,255,255,0.06)"}}>
                 <div style={{position:"absolute",inset:0,backgroundImage:`url(${bgSrc})`,backgroundSize:"cover",backgroundPosition:"center bottom"}}/>
                 <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,transparent 0%,transparent 60%,rgba(0,0,0,0.15) 100%)"}}/>
 
