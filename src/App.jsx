@@ -611,7 +611,7 @@ function nextUnit(squad,fallenIdx){return squad.map((u,i)=>i===fallenIdx?{...u,f
 
 function gameReducer(st,action){
   const calcDmg=(base,elapsed,cr)=>{const t=getSpeedTier(elapsed);const c=Math.random()<cr;return{damage:Math.round(base*t.multiplier*(c?CRIT_MULTIPLIER:1)),tier:t,isCrit:c};};
-  const advQ=(s)=>{let q=s.questionQueue;let bp=s.bossPhase;if(bp==="review"&&q.length>0&&q[0]._isNew)bp="battle";if(q.length===0)q=shuffleArray(s._allQs||[]);const n=q[0];return{...s,phase:PHASES.PLAYER_TURN,currentQuestion:n,questionQueue:q.slice(1),selectedAnswer:null,wasCorrect:null,damageResult:null,enemyDamageResult:null,bossPhase:bp};};
+  const advQ=(s)=>{let q=s.questionQueue;let bp=s.bossPhase;if(bp==="review"&&q.length>0&&q[0]._isNew)bp="battle";if(q.length===0)q=shuffleArray(s._allQs||[]);const n=q[0]||s.currentQuestion;return{...s,phase:PHASES.PLAYER_TURN,currentQuestion:n,questionQueue:q.slice(1),selectedAnswer:null,wasCorrect:null,damageResult:null,enemyDamageResult:null,bossPhase:bp};};
 
   switch(action.type){
     case "START":{
@@ -948,8 +948,8 @@ export default function HistoryLegends(){
 
               {/* ═══ QUESTION UI ═══ */}
               <div style={{flex:1,display:"flex",flexDirection:"column",gap:8,minHeight:0,overflowY:"auto"}}>
-                {state.phase===PHASES.PLAYER_TURN&&<><Timer duration={TIMER_DURATION} onTimeout={hTO} isActive={true} onTick={hTick}/><QCard question={state.currentQuestion} onAnswer={hAns} disabled={false}/></>}
-                {state.phase===PHASES.ANSWER_RESULT&&<ResultOvl wasCorrect={state.wasCorrect} question={state.currentQuestion} selectedAnswer={state.selectedAnswer} damageResult={state.damageResult} healAmt={state.wasCorrect&&pU?.special==="heal"?(pU.healAmt||8):0} onContinue={()=>dispatch({type:"PROCEED"})}/>}
+                {state.phase===PHASES.PLAYER_TURN&&state.currentQuestion&&<><Timer duration={TIMER_DURATION} onTimeout={hTO} isActive={true} onTick={hTick}/><QCard question={state.currentQuestion} onAnswer={hAns} disabled={false}/></>}
+                {state.phase===PHASES.ANSWER_RESULT&&state.currentQuestion&&<ResultOvl wasCorrect={state.wasCorrect} question={state.currentQuestion} selectedAnswer={state.selectedAnswer} damageResult={state.damageResult} healAmt={state.wasCorrect&&pU?.special==="heal"?(pU.healAmt||8):0} onContinue={()=>dispatch({type:"PROCEED"})}/>}
                 {state.phase===PHASES.UNIT_FALLEN&&<FallenOvl msg={state.fallenMsg} onContinue={()=>dispatch({type:"DISMISS_FALLEN"})}/>}
                 {state.phase===PHASES.ENEMY_TURN&&state.enemyDamageResult&&<EnemyOvl damage={state.enemyDamageResult} name={eU?eU.name:curBattle.general} onContinue={()=>dispatch({type:"AFTER_ENEMY"})}/>}
                 {state.phase===PHASES.ENEMY_TURN&&!state.enemyDamageResult&&<div style={{textAlign:"center",padding:16,fontFamily:fonts.heading,fontSize:"0.85rem",color:"#EF5350",animation:"pulse 0.8s infinite"}}>Enemy attacking...</div>}
