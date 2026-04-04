@@ -30,10 +30,10 @@ const UPGRADES = {
 
 // ─── UNITS ───────────────────────────────────────────────────────────────────
 const UNITS = [
-  { id:"infantry", name:"Infantry", icon:"🛡️", desc:"Balanced forces.", hpMult:1.0, dmgMult:1.0, special:null, cost:0, color:"#42A5F5" },
-  { id:"cavalry", name:"Cavalry", icon:"🐴", desc:"High damage, less HP.", hpMult:0.8, dmgMult:1.35, special:null, cost:100, color:"#FF8A65" },
-  { id:"artillery", name:"Artillery", icon:"💣", desc:"Devastating but fragile.", hpMult:0.65, dmgMult:1.6, special:null, cost:175, color:"#EF5350" },
-  { id:"medic", name:"Medic", icon:"⚕️", desc:"Heals 8 HP on correct.", hpMult:1.15, dmgMult:0.75, special:"heal", healAmt:8, cost:125, color:"#66BB6A" },
+  { id:"infantry", name:"Infantry", icon:"🛡️", desc:"Balanced forces.", hpMult:1.0, dmgMult:1.0, special:null, cost:0, color:"#42A5F5", eraNames:{revwar:"Minutemen",civilwar:"Regulars",ww2:"Riflemen",civilrights:"Marchers",ww1:"Doughboys",coldwar:"Agents",westward:"Settlers"} },
+  { id:"cavalry", name:"Cavalry", icon:"🐴", desc:"High damage, less HP.", hpMult:0.8, dmgMult:1.35, special:null, cost:100, color:"#FF8A65", eraNames:{revwar:"Light Horse",civilwar:"Cavalry",ww2:"Paratroopers",civilrights:"Organizers",ww1:"Shock Troops",coldwar:"Operatives",westward:"Riders"} },
+  { id:"artillery", name:"Artillery", icon:"💣", desc:"Devastating but fragile.", hpMult:0.65, dmgMult:1.6, special:null, cost:175, color:"#EF5350", eraNames:{revwar:"Cannon Crew",civilwar:"Battery",ww2:"Tank Crew",civilrights:"Legal Team",ww1:"Howitzer Crew",coldwar:"Analysts",westward:"Sharpshooters"} },
+  { id:"medic", name:"Medic", icon:"⚕️", desc:"Heals 8 HP on correct.", hpMult:1.15, dmgMult:0.75, special:"heal", healAmt:8, cost:125, color:"#66BB6A", eraNames:{revwar:"Field Surgeon",civilwar:"Field Surgeon",ww2:"Combat Medic",civilrights:"Community Aid",ww1:"Stretcher Bearer",coldwar:"Diplomats",westward:"Frontier Doctor"} },
 ];
 
 
@@ -697,8 +697,9 @@ function ShopBtn({onClick,coins}){return(<button onClick={onClick} style={{posit
 // ═════════════════════════════════════════════════════════════════════════════
 function ShopScreen({onBack,coins,upgrades,onBuy}){return(<div style={{padding:20,animation:"fadeIn 0.4s ease-out"}}><BB onClick={onBack}/><div style={{textAlign:"center",marginBottom:20}}><div style={{fontFamily:fonts.heading,fontSize:"1.4rem",fontWeight:700,color:"#FFD700"}}>Upgrade Shop</div><div style={{fontFamily:fonts.mono,fontSize:"1rem",color:"#FFD700",marginTop:6}}>🪙 {coins}</div></div><div style={{display:"flex",flexDirection:"column",gap:12,maxWidth:400,margin:"0 auto"}}>{["maxHP","baseDmg","critRate"].map(k=>{const u=UPGRADES[k],lv=upgrades[k],mx=lv>=u.levels.length-1,nc=mx?0:u.costs[lv+1],ca=coins>=nc;return(<div key={k} style={{background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.06)",borderRadius:12,padding:"14px 16px"}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}><div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:"1.1rem"}}>{u.icon}</span><span style={{fontFamily:fonts.heading,fontSize:"0.75rem",fontWeight:700,color:"#E0E0E0"}}>{u.label}</span></div><span style={{fontFamily:fonts.mono,fontSize:"0.65rem",color:"#888"}}>Lv {lv+1}/{u.levels.length}</span></div><div style={{display:"flex",gap:3,marginBottom:8}}>{u.levels.map((_,i)=>(<div key={i} style={{flex:1,height:3,borderRadius:2,background:i<=lv?"#4FC3F7":"rgba(255,255,255,0.08)"}}/>))}</div><div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}><span style={{fontFamily:fonts.mono,fontSize:"0.7rem",color:"#4FC3F7"}}>{u.desc[lv]}{!mx&&` → ${u.desc[lv+1]}`}</span>{mx?<span style={{fontFamily:fonts.heading,fontSize:"0.55rem",color:"#81C784"}}>MAX</span>:<button onClick={()=>ca&&onBuy(k)} style={{...btn(ca?"linear-gradient(135deg,#FFD700,#FFA000)":"rgba(255,255,255,0.05)",ca?"transparent":"rgba(255,255,255,0.1)"),padding:"5px 14px",fontSize:"0.6rem",color:ca?"#1a1a2e":"#666",fontWeight:700,cursor:ca?"pointer":"default",opacity:ca?1:0.5}}>🪙 {nc}</button>}</div></div>);})}</div></div>);}
 
-function UnitSelectScreen({battle,unlockedUnits,coins,onUnlock,onGo,onBack}){
+function UnitSelectScreen({battle,era,unlockedUnits,coins,onUnlock,onGo,onBack}){
   const[squad,setSquad]=useState([]);
+  const uName=(u)=>u.eraNames?.[era]||u.name;
   const addUnit=u=>{if(squad.length<3)setSquad([...squad,u]);};
   const removeUnit=i=>setSquad(squad.filter((_,j)=>j!==i));
   return(<div style={{padding:20,animation:"fadeIn 0.4s ease-out"}}><BB onClick={onBack}/>
@@ -707,7 +708,7 @@ function UnitSelectScreen({battle,unlockedUnits,coins,onUnlock,onGo,onBack}){
     <div style={{display:"flex",justifyContent:"center",gap:10,marginBottom:16}}>
       {[0,1,2].map(i=>(
         <div key={i} onClick={()=>squad[i]&&removeUnit(i)} style={{width:70,height:80,borderRadius:10,border:`2px dashed ${squad[i]?"rgba(79,195,247,0.4)":"rgba(255,255,255,0.1)"}`,background:squad[i]?"rgba(79,195,247,0.06)":"rgba(255,255,255,0.02)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",cursor:squad[i]?"pointer":"default",transition:"all 0.2s"}}>
-          {squad[i]?<><span style={{fontSize:"1.4rem"}}>{squad[i].icon}</span><span style={{fontFamily:fonts.heading,fontSize:"0.45rem",color:squad[i].color,marginTop:2}}>{squad[i].name}</span></>:<span style={{fontFamily:fonts.mono,fontSize:"0.6rem",color:"#555"}}>{i+1}</span>}
+          {squad[i]?<><span style={{fontSize:"1.4rem"}}>{squad[i].icon}</span><span style={{fontFamily:fonts.heading,fontSize:"0.45rem",color:squad[i].color,marginTop:2}}>{uName(squad[i])}</span></>:<span style={{fontFamily:fonts.mono,fontSize:"0.6rem",color:"#555"}}>{i+1}</span>}
         </div>
       ))}
     </div>
@@ -719,7 +720,7 @@ function UnitSelectScreen({battle,unlockedUnits,coins,onUnlock,onGo,onBack}){
       {UNITS.map(u=>{const owned=unlockedUnits.includes(u.id);const canBuy=coins>=u.cost;
         return(<button key={u.id} onClick={()=>owned?addUnit(u):canBuy&&onUnlock(u)} disabled={(!owned&&!canBuy)||squad.length>=3} style={{background:owned?"rgba(79,195,247,0.04)":"rgba(255,255,255,0.02)",border:`1px solid ${owned?"rgba(79,195,247,0.2)":"rgba(255,255,255,0.06)"}`,borderRadius:10,padding:"10px 14px",textAlign:"left",cursor:(owned||canBuy)&&squad.length<3?"pointer":"default",opacity:(!owned&&!canBuy)||squad.length>=3?0.35:1,width:"100%",transition:"all 0.2s"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-            <div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:"1.1rem"}}>{u.icon}</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.7rem",fontWeight:700,color:u.color}}>{u.name}</div><div style={{fontFamily:fonts.body,fontSize:"0.7rem",color:"#999"}}>{u.desc}</div></div></div>
+            <div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:"1.1rem"}}>{u.icon}</span><div><div style={{fontFamily:fonts.heading,fontSize:"0.7rem",fontWeight:700,color:u.color}}>{uName(u)}</div><div style={{fontFamily:fonts.body,fontSize:"0.7rem",color:"#999"}}>{u.desc}</div></div></div>
             {!owned&&<span style={{fontFamily:fonts.mono,fontSize:"0.7rem",color:canBuy?"#FFD700":"#666"}}>🪙 {u.cost}</span>}
             {owned&&<span style={{fontFamily:fonts.mono,fontSize:"0.55rem",color:u.color}}>HP×{u.hpMult} DMG×{u.dmgMult}</span>}
           </div>
@@ -846,7 +847,7 @@ export default function HistoryLegends(){
   const startBattle=(battle,squad)=>{
     let rv=null;
     if(battle.boss){const allB={"ww2":WW2_BATTLES,"civilwar":CW_BATTLES,"civilrights":CR_BATTLES,"ww1":WWI_BATTLES,"coldwar":CW2_BATTLES,"westward":WE_BATTLES}[curEra]||BATTLES;const eraQTexts=new Set(allB.flatMap(b=>b.questions.map(q=>q.text)));const wQ=wrongAll.filter(q=>q&&eraQTexts.has(q.text)&&!battle.questions.find(b=>b.text===q.text));const pB=allB.filter(b=>b.id!==battle.id&&!b.boss);const pQs=pB.flatMap(b=>b.questions);const nW=pQs.filter(q=>!wQ.find(w=>w.text===q.text));rv=[...wQ,...shuffleArray(nW).slice(0,Math.max(0,6-wQ.length))].slice(0,8);}
-    setCS(squad);dispatch({type:"START",battle,squad,playerStats:pStats,reviewQs:rv});setScreen(SCREENS.BATTLE);
+    setCS(squad);dispatch({type:"START",battle,squad:squad.map(u=>({...u,name:u.eraNames?.[curEra]||u.name})),playerStats:pStats,reviewQs:rv});setScreen(SCREENS.BATTLE);
   };
   const goMap=()=>{const m={"ww2":SCREENS.WW2,"civilwar":SCREENS.CIVIL_WAR,"civilrights":SCREENS.CIVIL_RIGHTS,"ww1":SCREENS.WWI,"coldwar":SCREENS.COLD_WAR,"westward":SCREENS.WESTWARD};setScreen(m[curEra]||SCREENS.REV_WAR);};
   const goMenu=()=>setScreen(SCREENS.HOME);
@@ -881,7 +882,7 @@ export default function HistoryLegends(){
           {screen===SCREENS.WESTWARD&&<MapScreen onBack={()=>setScreen(SCREENS.US_HISTORY)} onSelect={b=>{setCB(b);setEra("westward");setScreen(SCREENS.PRE_BATTLE);}} completed={completed} mapData={WE_MAP} battles={WE_BATTLES} title="Westward Expansion"/>}
           {screen===SCREENS.SHOP&&<ShopScreen onBack={()=>setScreen(SCREENS.HOME)} coins={coins} upgrades={upgrades} onBuy={buyUpg}/>}
           {screen===SCREENS.PRE_BATTLE&&<PreBattle battle={curBattle} era={curEra} onStart={()=>setScreen(SCREENS.UNIT_SELECT)} onBack={goMap}/>}
-          {screen===SCREENS.UNIT_SELECT&&<UnitSelectScreen battle={curBattle} unlockedUnits={unlockedUnits} coins={coins} onUnlock={unlockU} onGo={sq=>startBattle(curBattle,sq)} onBack={()=>setScreen(SCREENS.PRE_BATTLE)}/>}
+          {screen===SCREENS.UNIT_SELECT&&<UnitSelectScreen battle={curBattle} era={curEra} unlockedUnits={unlockedUnits} coins={coins} onUnlock={unlockU} onGo={sq=>startBattle(curBattle,sq)} onBack={()=>setScreen(SCREENS.PRE_BATTLE)}/>}
 
           {screen===SCREENS.BATTLE&&<>
             {state.phase===PHASES.VICTORY&&<VScreen state={state} battle={curBattle} onRestart={()=>setScreen(SCREENS.UNIT_SELECT)} onMenu={goMap} onShop={()=>setScreen(SCREENS.SHOP)}/>}
