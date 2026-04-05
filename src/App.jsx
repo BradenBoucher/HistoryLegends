@@ -1111,7 +1111,7 @@ export default function HistoryLegends(){
                 <div style={{position:"absolute",bottom:"8%",left:"2%",display:"flex",gap:2,alignItems:"flex-end",zIndex:2,animation:state.shakePlayer?"shakeHit 0.4s ease-out":"none"}}>
                   {state.pSquad.map((u,i)=>{
                     const isActive=!u.fallen&&state.pSquad.findIndex(x=>!x.fallen)===i;
-                    const sz=isActive?95:70;
+                    const sz=isActive?95:45;
                     const uState=isActive?ps:"idle";
                     return(<div key={`p${i}`} style={{display:"flex",flexDirection:"column",alignItems:"center",opacity:u.fallen?0.35:1,filter:u.fallen?"grayscale(1)":"none",transition:"all 0.3s",marginBottom:isActive?0:-5,zIndex:isActive?3:1}}>
                       {/* Mini HP bar */}
@@ -1132,7 +1132,7 @@ export default function HistoryLegends(){
                 <div style={{position:"absolute",bottom:"4%",right:"2%",display:"flex",flexDirection:"row-reverse",gap:2,alignItems:"flex-end",zIndex:2,animation:state.shakeEnemy?"shakeHit 0.4s ease-out":"none"}}>
                   {state.eSquad.map((u,i)=>{
                     const isActive=!u.fallen&&state.eSquad.findIndex(x=>!x.fallen)===i;
-                    const sz=isActive?95:70;
+                    const sz=isActive?95:45;
                     const uState=isActive?es:"idle";
                     return(<div key={`e${i}`} style={{display:"flex",flexDirection:"column",alignItems:"center",opacity:u.fallen?0.35:1,filter:u.fallen?"grayscale(1)":"none",transition:"all 0.3s",marginBottom:isActive?0:-5,zIndex:isActive?3:1}}>
                       <div style={{width:sz-10,marginBottom:2}}>
