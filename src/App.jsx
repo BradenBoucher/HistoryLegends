@@ -752,43 +752,36 @@ function MapDoodles({width,height}){
     {Array.from({length:25},(_,i)=>{const x=rng(i*11.3+50)*width;const y=rng(i*8.7+50)*height;return<circle key={`d${i}`} cx={x} cy={y} r={1} fill="#7a6a4a"/>;})}
   </g>);
 }
-function MapScreen({onBack,onSelect,completed,mapData,battles,title}){const sR=useRef(null);useEffect(()=>{if(sR.current)sR.current.scrollTop=sR.current.scrollHeight;},[]);const m=mapData,ns=115,mh=m.length*ns+140,pw=340;const gX=i=>{const c=(m.length-1-i)%6;return[0.5,0.25,0.5,0.75,0.5,0.3][c];};const pts=m.map((_,i)=>({x:gX(i)*pw,y:70+i*ns}));
-  // Build dotted line segments between consecutive nodes
+function MapScreen({onBack,onSelect,completed,mapData,battles,title}){const sR=useRef(null);useEffect(()=>{if(sR.current)sR.current.scrollTop=sR.current.scrollHeight;},[]);const m=mapData,ns=90,mh=m.length*ns+120,pw=340;const gX=i=>{const c=(m.length-1-i)%6;return[0.5,0.28,0.5,0.72,0.5,0.32][c];};const pts=m.map((_,i)=>({x:gX(i)*pw,y:55+i*ns}));
   const segments=pts.map((p,i)=>{if(i===0)return null;const pr=pts[i-1];return`M ${pr.x} ${pr.y} C ${pr.x} ${(pr.y+p.y)/2}, ${p.x} ${(pr.y+p.y)/2}, ${p.x} ${p.y}`;}).filter(Boolean);
+  const done=battles.filter(b=>completed.includes(b.id)).length;
   return(<div style={{height:"100vh",display:"flex",flexDirection:"column",animation:"fadeIn 0.4s ease-out",background:"#2a2118"}}>
     <div style={{padding:"10px 20px 8px",flexShrink:0,background:"linear-gradient(180deg,#3b2f22,#2a2118)",borderBottom:"2px solid #5a4a35",zIndex:5}}>
       <BB onClick={onBack}/>
-      <div style={{textAlign:"center"}}><div style={{fontFamily:fonts.heading,fontSize:"1.15rem",fontWeight:700,color:"#D4B87A",textShadow:"0 1px 3px rgba(0,0,0,0.5)"}}>{title}</div></div>
+      <div style={{textAlign:"center"}}><div style={{fontFamily:fonts.heading,fontSize:"1.15rem",fontWeight:700,color:"#D4B87A",textShadow:"0 1px 3px rgba(0,0,0,0.5)"}}>{title}</div><div style={{fontFamily:fonts.mono,fontSize:"0.5rem",color:"#8a7a60",marginTop:2}}>{done}/{battles.length} complete</div></div>
     </div>
     <div ref={sR} style={{flex:1,overflowY:"auto",overflowX:"hidden",position:"relative"}}>
-      {/* Torn edge top */}
       <svg style={{position:"sticky",top:0,width:"100%",height:16,zIndex:4,display:"block"}} viewBox="0 0 400 16" preserveAspectRatio="none"><path d="M0,0 L400,0 L400,6 L390,9 L375,5 L360,10 L345,7 L330,11 L315,6 L300,9 L285,5 L270,10 L255,7 L240,11 L225,6 L210,9 L195,5 L180,10 L165,7 L150,11 L135,6 L120,9 L105,5 L90,10 L75,7 L60,11 L45,6 L30,9 L15,5 L0,8Z" fill="#C4A462"/></svg>
-      <div style={{backgroundImage:"url(/bg/map-parchment.jpg)",backgroundSize:"100% auto",backgroundRepeat:"repeat-y",backgroundPosition:"top center",backgroundColor:"#C4A462",position:"relative",minHeight:mh+30}}>
-        {/* Parchment grain */}
-        <div style={{position:"absolute",inset:0,opacity:0.06,backgroundImage:"repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(80,50,15,0.4) 3px,rgba(80,50,15,0.4) 4px)",pointerEvents:"none"}}/>
-        {/* Decorative double border */}
+      <div style={{backgroundImage:"url(/bg/map-parchment.jpg)",backgroundSize:"100% auto",backgroundRepeat:"repeat-y",backgroundPosition:"top center",backgroundColor:"#C4A462",position:"relative",minHeight:mh+20}}>
+        <div style={{position:"absolute",inset:0,background:"rgba(30,20,10,0.12)",pointerEvents:"none"}}/>
         <div style={{position:"absolute",top:6,left:10,right:10,bottom:6,border:"2.5px solid rgba(90,65,25,0.3)",borderRadius:3,pointerEvents:"none"}}/>
         <div style={{position:"absolute",top:12,left:16,right:16,bottom:12,border:"1px solid rgba(90,65,25,0.18)",borderRadius:2,pointerEvents:"none"}}/>
         <div style={{position:"relative",width:"100%",maxWidth:pw,margin:"0 auto",height:mh,padding:"0 10px"}}>
-          {/* SVG layer: doodles + paths */}
           <svg style={{position:"absolute",top:0,left:0,width:pw,height:mh,pointerEvents:"none"}} viewBox={`0 0 ${pw} ${mh}`}>
             <MapDoodles width={pw} height={mh}/>
-            {/* Dotted paths between nodes */}
-            {segments.map((d,i)=><g key={`seg${i}`}><path d={d} fill="none" stroke="rgba(90,60,20,0.15)" strokeWidth="22" strokeLinecap="round"/><path d={d} fill="none" stroke="#6B4F2A" strokeWidth="2" strokeLinecap="round" strokeDasharray="6 8" opacity="0.5"/></g>)}
-            {/* Compass rose */}
-            <g transform={`translate(${pw-35},45)`} opacity="0.25"><circle cx="0" cy="0" r="16" fill="none" stroke="#5a3a1a" strokeWidth="1"/><circle cx="0" cy="0" r="2" fill="#5a3a1a"/><line x1="0" y1="-16" x2="0" y2="16" stroke="#5a3a1a" strokeWidth="0.7"/><line x1="-16" y1="0" x2="16" y2="0" stroke="#5a3a1a" strokeWidth="0.7"/><polygon points="0,-14 -3,-5 3,-5" fill="#5a3a1a"/><text x="0" y="-17" textAnchor="middle" fontSize="6" fill="#5a3a1a" fontFamily="serif" fontWeight="bold">N</text></g>
+            {segments.map((d,i)=><g key={`seg${i}`}><path d={d} fill="none" stroke="rgba(90,60,20,0.2)" strokeWidth="24" strokeLinecap="round"/><path d={d} fill="none" stroke="#5a3a1a" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="6 8" opacity="0.6"/></g>)}
+            <g transform={`translate(${pw-35},40)`} opacity="0.2"><circle cx="0" cy="0" r="16" fill="none" stroke="#5a3a1a" strokeWidth="1"/><circle cx="0" cy="0" r="2" fill="#5a3a1a"/><line x1="0" y1="-16" x2="0" y2="16" stroke="#5a3a1a" strokeWidth="0.7"/><line x1="-16" y1="0" x2="16" y2="0" stroke="#5a3a1a" strokeWidth="0.7"/><polygon points="0,-14 -3,-5 3,-5" fill="#5a3a1a"/><text x="0" y="-17" textAnchor="middle" fontSize="6" fill="#5a3a1a" fontFamily="serif" fontWeight="bold">N</text></g>
           </svg>
-          <div style={{position:"absolute",top:14,left:"50%",transform:"translateX(-50%)",fontFamily:fonts.heading,fontSize:"0.55rem",letterSpacing:"0.2em",color:"#6B4F2A",opacity:0.5,whiteSpace:"nowrap"}}>🏆 Victory 🏆</div>
-          <div style={{position:"absolute",bottom:18,left:"50%",transform:"translateX(-50%)",fontFamily:fonts.heading,fontSize:"0.5rem",letterSpacing:"0.2em",color:"#7B5A30"}}>▼ Start Here ▼</div>
-          {m.map((b,i)=>{const pt=pts[i];const bc=battles.find(x=>x.id===b.id);const ic=completed.includes(b.id);const bi=battles.findIndex(x=>x.id===b.id);const av=bi===0||(bi>0&&completed.includes(battles[bi-1].id));const iB=!!b.boss;const iF=b.boss==="FINAL BOSS";const sz=iF?58:iB?50:40;const nc=ic?"#4a7a2e":av?"#8B5E3C":iF?"#8B6914":iB?"#A0522D":"#8a7a66";
+          <div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",fontFamily:fonts.heading,fontSize:"0.5rem",letterSpacing:"0.2em",color:"#6B4F2A",opacity:0.4,whiteSpace:"nowrap"}}>🏆 Victory 🏆</div>
+          <div style={{position:"absolute",bottom:12,left:"50%",transform:"translateX(-50%)",fontFamily:fonts.heading,fontSize:"0.5rem",letterSpacing:"0.2em",color:"#7B5A30"}}>▼ Start Here ▼</div>
+          {m.map((b,i)=>{const pt=pts[i];const bc=battles.find(x=>x.id===b.id);const ic=completed.includes(b.id);const bi=battles.findIndex(x=>x.id===b.id);const av=bi===0||(bi>0&&completed.includes(battles[bi-1].id));const iB=!!b.boss;const iF=b.boss==="FINAL BOSS";const sz=iF?62:iB?52:44;const nc=ic?"#4a7a2e":av?"#8B5E3C":iF?"#8B6914":iB?"#A0522D":"#8a7a66";
             return(<div key={b.id+i} style={{position:"absolute",top:pt.y-sz/2,left:pt.x,transform:"translateX(-50%)",display:"flex",flexDirection:"column",alignItems:"center",cursor:(av||ic)&&bc?"pointer":"default",zIndex:av?3:1}} onClick={()=>(av||ic)&&bc&&onSelect(bc)}>
               {iB&&<div style={{fontFamily:fonts.heading,fontSize:"0.42rem",letterSpacing:"0.12em",color:iF?"#7B5518":"#8B4513",textTransform:"uppercase",marginBottom:2,textShadow:"0 1px 1px rgba(255,230,150,0.4)"}}>{b.boss}</div>}
-              <div style={{width:sz,height:sz,borderRadius:"50%",background:ic?"rgba(74,122,46,0.3)":av?"rgba(180,140,80,0.35)":"rgba(140,120,90,0.2)",border:`2.5px solid ${ic?"#4a7a2e":av?"#8B6B3E":"#9a8a7066"}`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",boxShadow:av?"0 3px 10px rgba(80,50,15,0.3), inset 0 1px 3px rgba(255,255,255,0.15)":"inset 0 1px 2px rgba(0,0,0,0.15)"}}>{av&&!ic&&<div style={{position:"absolute",inset:-5,borderRadius:"50%",border:"2px solid rgba(139,107,62,0.4)",animation:"pulse 2s infinite"}}/>}<span style={{fontSize:iF?"1.3rem":iB?"1.1rem":"0.9rem",filter:!av&&!ic?"grayscale(1) opacity(0.4)":"none"}}>{ic?"⭐":av?b.icon:"🔒"}</span></div>
-              <div style={{textAlign:"center",marginTop:4,maxWidth:115}}><div style={{fontFamily:fonts.heading,fontSize:"0.52rem",fontWeight:700,color:ic?"#3d6b24":av?"#3B2717":"#7a6a55",lineHeight:1.2,textShadow:"0 1px 1px rgba(255,230,150,0.3)"}}>{b.name}</div><div style={{fontFamily:fonts.mono,fontSize:"0.42rem",color:"#6B5A45",marginTop:1}}>{b.date}</div></div>
+              <div style={{width:sz,height:sz,borderRadius:"50%",background:ic?"rgba(74,122,46,0.4)":av?"rgba(180,140,80,0.45)":"rgba(100,80,60,0.25)",border:`3px solid ${ic?"#4a7a2e":av?"#8B6B3E":"#9a8a7066"}`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",boxShadow:av||ic?"0 3px 12px rgba(0,0,0,0.4), inset 0 1px 3px rgba(255,255,255,0.2)":"inset 0 1px 2px rgba(0,0,0,0.2)",backdropFilter:"blur(2px)"}}>{av&&!ic&&<div style={{position:"absolute",inset:-6,borderRadius:"50%",border:"2px solid rgba(139,107,62,0.5)",animation:"pulse 2s infinite"}}/>}<span style={{fontSize:iF?"1.4rem":iB?"1.2rem":"1rem",filter:!av&&!ic?"grayscale(1) opacity(0.35)":"none"}}>{ic?"⭐":av?b.icon:"🔒"}</span></div>
+              <div style={{textAlign:"center",marginTop:4,maxWidth:120,background:"rgba(30,20,10,0.5)",borderRadius:6,padding:"2px 8px"}}><div style={{fontFamily:fonts.heading,fontSize:"0.55rem",fontWeight:700,color:ic?"#8BC34A":av?"#D4B87A":"#9a8a70",lineHeight:1.2,textShadow:"0 1px 2px rgba(0,0,0,0.6)"}}>{b.name}</div><div style={{fontFamily:fonts.mono,fontSize:"0.42rem",color:ic?"#7aa03a":"#8a7a60",marginTop:1}}>{b.date}</div></div>
             </div>);})}
         </div>
       </div>
-      {/* Torn edge bottom */}
       <svg style={{width:"100%",height:16,display:"block",marginTop:-1}} viewBox="0 0 400 16" preserveAspectRatio="none"><path d="M0,16 L400,16 L400,10 L390,7 L375,11 L360,6 L345,9 L330,5 L315,10 L300,7 L285,11 L270,6 L255,9 L240,5 L225,10 L210,7 L195,11 L180,6 L165,9 L150,5 L135,10 L120,7 L105,11 L90,6 L75,9 L60,5 L45,10 L30,7 L15,11 L0,8Z" fill="#C4A462"/></svg>
     </div>
   </div>);}
