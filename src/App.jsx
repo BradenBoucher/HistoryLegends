@@ -806,8 +806,12 @@ function SovietSprite({state="idle",size=140}){
   const src=`/sprites/soviet-${state}.png`;
   return <img src={src} alt={`Soviet ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
 }
+function ImperialGermanSprite({state="idle",size=140}){
+  const src=`/sprites/imperial-${state}.png`;
+  return <img src={src} alt={`Imperial German ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
+}
 function EraPlayerSprite({era,state,size}){return era==="ww2"?<GISprite state={state} size={size}/>:era==="civilrights"?<ActivistSprite state={state} size={size}/>:era==="westward"?<CowboySprite state={state} size={size}/>:era==="ww1"?<DoughboySprite state={state} size={size}/>:era==="coldwar"?<AgentSprite state={state} size={size}/>:<ColonialSprite state={state} size={size}/>;}
-function EraEnemySprite({era,state,size}){return era==="ww2"?<GermanSprite state={state} size={size}/>:era==="civilwar"?<ConfederateSprite state={state} size={size}/>:era==="westward"?<BisonSprite state={state} size={size}/>:era==="civilrights"?<PoliceSprite state={state} size={size}/>:era==="coldwar"?<SovietSprite state={state} size={size}/>:era==="ww1"?<GermanSprite state={state} size={size}/>:<BritishSprite state={state} size={size}/>;}
+function EraEnemySprite({era,state,size}){return era==="ww2"?<GermanSprite state={state} size={size}/>:era==="civilwar"?<ConfederateSprite state={state} size={size}/>:era==="westward"?<BisonSprite state={state} size={size}/>:era==="civilrights"?<PoliceSprite state={state} size={size}/>:era==="coldwar"?<SovietSprite state={state} size={size}/>:era==="ww1"?<ImperialGermanSprite state={state} size={size}/>:<BritishSprite state={state} size={size}/>;}
 
 
 // ═════════════════════════════════════════════════════════════════════════════
