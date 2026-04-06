@@ -1100,7 +1100,8 @@ export default function HistoryLegends(){
             {state.phase===PHASES.DEFEAT&&<DScreen state={state} battle={curBattle} onRestart={()=>setScreen(SCREENS.UNIT_SELECT)} onMenu={goMap}/>}
             {state.phase!==PHASES.VICTORY&&state.phase!==PHASES.DEFEAT&&state.pSquad&&state.eSquad&&<>
               {/* Header */}
-              <div style={{textAlign:"center",padding:"3px 0 5px",flexShrink:0}}>
+              <div style={{position:"relative",textAlign:"center",padding:"3px 0 5px",flexShrink:0}}>
+                <button onClick={goMap} style={{position:"absolute",left:8,top:2,background:"rgba(20,18,14,0.7)",border:"1px solid rgba(255,255,255,0.1)",borderRadius:8,padding:"4px 10px",cursor:"pointer",fontFamily:fonts.heading,fontSize:"0.45rem",color:"#999",letterSpacing:"0.1em"}}>✕ QUIT</button>
                 <div style={{fontFamily:fonts.heading,fontSize:"0.42rem",letterSpacing:"0.18em",color:"#555",textTransform:"uppercase"}}>{{"revwar":"Revolutionary War","ww2":"World War II","civilwar":"Civil War","civilrights":"Civil Rights","ww1":"World War I","coldwar":"Cold War","westward":"Westward Expansion"}[curEra]||curEra}{state.difficulty==="normal"?" · NORMAL":""}</div><div style={{fontFamily:fonts.heading,fontSize:"0.58rem",fontWeight:700,color:"#9E9E9E",marginTop:1}}>{curBattle.name} · {state.questionsCorrect}/{state.questionsAnswered}</div>
                 {state.bossPhase&&<div style={{fontFamily:fonts.heading,fontSize:"0.48rem",marginTop:2,padding:"2px 10px",borderRadius:5,display:"inline-block",background:state.bossPhase==="review"?"rgba(79,195,247,0.1)":"rgba(255,138,101,0.1)",color:state.bossPhase==="review"?"#4FC3F7":"#FF8A65"}}>{state.bossPhase==="review"?"📖 REVIEW":"⚔️ BOSS"}</div>}
               </div>
