@@ -825,57 +825,57 @@ function getCS(hp,mx,phase,isP,ok,eDmg){if(isP&&phase==="ANSWER_RESULT"&&ok)retu
 
 // ─── PNG SPRITE COMPONENT ────────────────────────────────────────────────────
 function ColonialSprite({state="idle",size=140}){
-  const src=`/sprites/colonial-${state}.png?v=2`;
+  const src=`/sprites/colonial-${state}.png?v=4`;
   return <img src={src} alt={`Colonial ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function BritishSprite({state="idle",size=140}){
-  const src=`/sprites/british-${state}.png?v=2`;
+  const src=`/sprites/british-${state}.png?v=4`;
   return <img src={src} alt={`British ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function PlayerChar({state,size,isColonial=true}){return isColonial?<ColonialSprite state={state} size={size}/>:<ChibiColonial state={state} size={size}/>;}
 function GISprite({state="idle",size=140}){
-  const src=`/sprites/gi-${state}.png?v=2`;
+  const src=`/sprites/gi-${state}.png?v=4`;
   return <img src={src} alt={`GI ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function GermanSprite({state="idle",size=140}){
-  const src=`/sprites/german-${state}.png?v=2`;
+  const src=`/sprites/german-${state}.png?v=4`;
   return <img src={src} alt={`German ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function ConfederateSprite({state="idle",size=140}){
-  const src=`/sprites/confederate-${state}.png?v=2`;
+  const src=`/sprites/confederate-${state}.png?v=4`;
   return <img src={src} alt={`Confederate ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function BisonSprite({state="idle",size=140}){
-  const src=`/sprites/bison-${state}.png?v=2`;
+  const src=`/sprites/bison-${state}.png?v=4`;
   const hitStyle=state==="hit"?{transform:"rotate(15deg)",transition:"transform 0.3s"}:{};
   return <img src={src} alt={`Bison ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s",...hitStyle}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function ActivistSprite({state="idle",size=140}){
-  const src=`/sprites/activist-${state}.png?v=2`;
+  const src=`/sprites/activist-${state}.png?v=4`;
   return <img src={src} alt={`Activist ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function PoliceSprite({state="idle",size=140}){
-  const src=`/sprites/police-${state}.png?v=2`;
+  const src=`/sprites/police-${state}.png?v=4`;
   return <img src={src} alt={`Police ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function CowboySprite({state="idle",size=140}){
-  const src=`/sprites/cowboy-${state}.png?v=2`;
+  const src=`/sprites/cowboy-${state}.png?v=4`;
   return <img src={src} alt={`Cowboy ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function DoughboySprite({state="idle",size=140}){
-  const src=`/sprites/doughboy-${state}.png?v=2`;
+  const src=`/sprites/doughboy-${state}.png?v=4`;
   return <img src={src} alt={`Doughboy ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function AgentSprite({state="idle",size=140}){
-  const src=`/sprites/agent-${state}.png?v=2`;
+  const src=`/sprites/agent-${state}.png?v=4`;
   return <img src={src} alt={`Agent ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function SovietSprite({state="idle",size=140}){
-  const src=`/sprites/soviet-${state}.png?v=2`;
+  const src=`/sprites/soviet-${state}.png?v=4`;
   return <img src={src} alt={`Soviet ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function ImperialGermanSprite({state="idle",size=140}){
-  const src=`/sprites/imperial-${state}.png?v=2`;
+  const src=`/sprites/imperial-${state}.png?v=4`;
   return <img src={src} alt={`Imperial German ${state}`} style={{height:size,width:"auto",imageRendering:"auto",objectFit:"contain",transformOrigin:"bottom center",animation:"idleBob 3.5s ease-in-out infinite",animationDelay:"-1.5s"}} onError={e=>{e.target.style.display="none";}}/>;
 }
 function EraPlayerSprite({era,state,size}){return era==="ww2"?<GISprite state={state} size={size}/>:era==="civilrights"?<ActivistSprite state={state} size={size}/>:era==="westward"?<CowboySprite state={state} size={size}/>:era==="ww1"?<DoughboySprite state={state} size={size}/>:era==="coldwar"?<AgentSprite state={state} size={size}/>:<ColonialSprite state={state} size={size}/>;}
